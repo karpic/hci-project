@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Mapa prirodnih spomenika" Height="430" Width="750">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="10" Padding="10" Click="Button_Click">Prikazi mapu</Button>
     </Grid>
 </Window>

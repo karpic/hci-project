@@ -24,5 +24,17 @@ namespace MapaPrirodnihSpomenika
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Uri myUri = new Uri("map.jpg", UriKind.RelativeOrAbsolute);
+            JpegBitmapDecoder decoder2 = new JpegBitmapDecoder(myUri, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            BitmapSource bitmapSource2 = decoder2.Frames[0];
+
+            // Draw the Image
+            myMapImage.Source = bitmapSource2;
+            myMapImage.Stretch = Stretch.Uniform;
+            myMapImage.Margin = new Thickness(20);
+        }
     }
 }
