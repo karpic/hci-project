@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.Dijalozi"
         mc:Ignorable="d"
-        Title="Informacije o spomeniku" Height="450" Width="350">
+        Title="Informacije o spomeniku" Height="450" Width="700
+        ">
     <Grid>
         
+        <Label x:Name="labelImeSpomenika" Content="Ime spomenika:" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.473,1.885"/>
+        <Label x:Name="labelOznakaSpomenika" Content="Oznaka spomenika:" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelOpisSpomenika" Content="Opis spomenika:" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelTipSpomenika" Content="Tip spomenika:" HorizontalAlignment="Left" Margin="13,185,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="13,216,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxOznakaSpomenika" HorizontalAlignment="Left" Height="23" Margin="128,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>
+
     </Grid>
 </Window>
