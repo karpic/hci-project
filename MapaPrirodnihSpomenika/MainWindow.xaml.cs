@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MapaPrirodnihSpomenika.Dijalozi;
 
 namespace MapaPrirodnihSpomenika
 {
@@ -20,6 +21,8 @@ namespace MapaPrirodnihSpomenika
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +38,10 @@ namespace MapaPrirodnihSpomenika
             myMapImage.Source = bitmapSource2;
             myMapImage.Stretch = Stretch.Uniform;
             myMapImage.Margin = new Thickness(20);
+
+            IzmenaSpomenik izspm = new IzmenaSpomenik();
+            izspm.Show();
+            
         }
     }
 }
