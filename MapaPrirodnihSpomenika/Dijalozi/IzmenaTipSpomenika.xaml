@@ -8,7 +8,7 @@
         Title="Informacije o tipu spomenika" Height="300" Width="300">
     <Grid>
         <Label x:Name="labelOznaka" Content="Oznaka tipa: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxOznaka" HorizontalAlignment="Left" Height="23" Margin="139,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Unesite jedinstvenu oznaku tipa spomenika"/>
+        <TextBox x:Name="txtBoxOznaka" HorizontalAlignment="Left" Height="23" Margin="139,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Unesite jedinstvenu oznaku tipa spomenika."/>
         <Label x:Name="labelIme" Content="Ime tipa: " HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.508,0.519"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="139,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Unesite ime tipa spomenika"/>
         <Label x:Name="labelIkonica" Content="Ikonica tipa: " HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>

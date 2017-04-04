@@ -13,22 +13,23 @@
         <Label x:Name="labelOpisSpomenika" Content="Opis spomenika:" HorizontalAlignment="Left" Margin="27,71,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelTipSpomenika" Content="Tip spomenika:" HorizontalAlignment="Left" Margin="30,169,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelKlima" Content="Klima: " HorizontalAlignment="Left" Margin="30,200,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxOznakaSpomenika" HorizontalAlignment="Left" Height="23" Margin="145,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" ToolTip="Unesite jedinstvenu oznaku spomenika."/>
-        <TextBox x:Name="txtBoxImeSpomenika" HorizontalAlignment="Left" Height="23" Margin="145,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" ToolTip="Unesite ime spomenika"/>
-        <TextBox x:Name="txtBoxOpis" HorizontalAlignment="Left" Height="92" Margin="145,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" ToolTip="Unesite opis spomenika."/>
-        <ComboBox x:Name="cbTipSpomenika" HorizontalAlignment="Left" Margin="145,173,0,0" VerticalAlignment="Top" Width="180"/>
-        <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="145,204,0,0" VerticalAlignment="Top" Width="180" ></ComboBox>
+        <TextBox x:Name="txtBoxOznakaSpomenika" HorizontalAlignment="Left" Height="23" Margin="141,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" ToolTip="Unesite jedinstvenu oznaku spomenika.">
+            <TextBox.Text>
+                <Binding Path="Ime" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:IzmenaSpomenikValidationRules ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox x:Name="txtBoxImeSpomenika" HorizontalAlignment="Left" Height="23" Margin="141,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184" ToolTip="Unesite ime spomenika"/>
+        <TextBox x:Name="txtBoxOpis" HorizontalAlignment="Left" Height="92" Margin="141,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184" ToolTip="Unesite opis spomenika."/>
+        <ComboBox x:Name="cbTipSpomenika" HorizontalAlignment="Left" Margin="141,173,0,0" VerticalAlignment="Top" Width="184"/>
+        <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="141,204,0,0" VerticalAlignment="Top" Width="184" ></ComboBox>
         <Label x:Name="labelIkonica" Content="Ikonica: " HorizontalAlignment="Left" Margin="30,234,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonIconPicker" Content="Izaberi ikonicu..." HorizontalAlignment="Left" Margin="145,237,0,0" VerticalAlignment="Top" Width="97"/>
+        <Button x:Name="buttonIconPicker" Content="Izaberi ikonicu..." HorizontalAlignment="Left" Margin="141,237,0,0" VerticalAlignment="Top" Width="101"/>
         <Label x:Name="labelEco" Content="Ekoloski ugrozen: " HorizontalAlignment="Left" Margin="30,270,0,0" VerticalAlignment="Top"/>
-        <GroupBox x:Name="groupBox" Header="" HorizontalAlignment="Left" Margin="141,267,0,0" VerticalAlignment="Top" Width="184" Height="24">
-            <RadioButton x:Name="radioButtonEcoDa" Content="Da" HorizontalAlignment="Left" Margin="0,0,0,-10" VerticalAlignment="Top"/>
-        </GroupBox>
-        <RadioButton x:Name="radioButtonEcoNe" Content="Ne" HorizontalAlignment="Left" Margin="282,276,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelNaseljeno" Content="Naseljeni region: " HorizontalAlignment="Left" Margin="30,301,0,0" VerticalAlignment="Top"/>
-        <GroupBox x:Name="groupBox1" Header="" HorizontalAlignment="Left" Margin="141,301,0,0" VerticalAlignment="Top" Width="184"/>
-        <RadioButton x:Name="radioButtonNaseljeDa" Content="Da" HorizontalAlignment="Left" Margin="145,309,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="radioButtonNaseljeNe" Content="Ne" HorizontalAlignment="Left" Margin="282,309,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelTurStatus" Content="Turistički status: " HorizontalAlignment="Left" Margin="30,332,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.009,-0.231"/>
         <ComboBox x:Name="comboBoxTurStatus" HorizontalAlignment="Left" Margin="141,332,0,0" VerticalAlignment="Top" Width="184"/>
         <Label x:Name="labelGodPrihod" Content="Godišnji prihod: " HorizontalAlignment="Left" Margin="30,363,0,0" VerticalAlignment="Top"/>
@@ -44,6 +45,8 @@
         <Label x:Name="labelDatOtrivanja" Content="Datum otkrivanja: " HorizontalAlignment="Left" Margin="30,394,0,0" VerticalAlignment="Top"/>
         <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="30,445,0,0" VerticalAlignment="Top" Width="78" Height="34"/>
         <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="247,445,0,0" VerticalAlignment="Top" Width="78" Height="34"/>
+        <ComboBox x:Name="comboBoxEkoUgorzen" HorizontalAlignment="Left" Margin="141,274,0,0" VerticalAlignment="Top" Width="184"/>
+        <ComboBox x:Name="comboBoxNaselje" HorizontalAlignment="Left" Margin="141,305,0,0" VerticalAlignment="Top" Width="184"/>
 
     </Grid>
 </Window>

@@ -78,6 +78,7 @@
     <Compile Include="Dijalozi\IzmenaSpomenik.xaml.cs">
       <DependentUpon>IzmenaSpomenik.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dijalozi\IzmenaSpomenikValidationRules.cs" />
     <Compile Include="Dijalozi\IzmenaTag.xaml.cs">
       <DependentUpon>IzmenaTag.xaml</DependentUpon>
     </Compile>
@@ -115,6 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <SplashScreen Include="Resources\map.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
