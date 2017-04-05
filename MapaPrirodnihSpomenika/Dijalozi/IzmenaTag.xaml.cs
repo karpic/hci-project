@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,47 @@ namespace MapaPrirodnihSpomenika.Dijalozi
     /// <summary>
     /// Interaction logic for IzmenaTag.xaml
     /// </summary>
-    public partial class IzmenaTag : Window
+    public partial class IzmenaTag : Window, INotifyPropertyChanged
     {
+        private string _oznaka;
+
+        public string Oznaka
+        {
+            get
+            {
+                return _oznaka;
+            }
+            set
+            {
+                if (value != _oznaka)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
         public IzmenaTag()
         {
             InitializeComponent();
+            this.DataContext = this;
+        }
+
+       
+
+        private void cancelClicked(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

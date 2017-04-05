@@ -22,6 +22,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
     {
         private string _ime;
         private string _oznaka;
+        private double _prihod;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -41,6 +42,21 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             }
         }
 
+        public double Prihod
+        {
+            get
+            {
+                return _prihod;
+            }
+            set
+            {
+                if (value != _prihod)
+                {
+                    _prihod = value;
+                    OnPropertyChanged("Prihod");
+                }
+            }
+        }
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -87,6 +103,9 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             this.comboBoxNaselje.Items.Add("Ne");
         }
 
-        
+        private void cancelClicked(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

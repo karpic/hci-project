@@ -5,15 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.Dijalozi"
         mc:Ignorable="d"
-        Title="Informacije o etiketi" Height="300" Width="300">
+        Title="Informacije o etiketi" Height="300" Width="390">
     <Grid>
-        <Label x:Name="labelOznaka" Content="Oznaka etikete: " HorizontalAlignment="Left" Margin="34,18,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBox" HorizontalAlignment="Left" Height="23" Margin="133,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Unesite jedinstvenu oznaku etikete."/>
-        <Label x:Name="labelBoja" Content="Boja etikete: " HorizontalAlignment="Left" Margin="34,49,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelOpis" Content="Opis etikete: " HorizontalAlignment="Left" Margin="34,80,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="92" Margin="133,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Unesite opis etikete."/>
-        <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="34,212,0,0" VerticalAlignment="Top" Width="78" Height="34"/>
-        <Button x:Name="buttonCanel" Content="Cancel" HorizontalAlignment="Left" Margin="178,212,0,0" VerticalAlignment="Top" Width="78" Height="34"/>
+        <Label x:Name="labelOznaka" Content="Oznaka etikete: " HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBox" HorizontalAlignment="Left" Height="23" Margin="104,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="257" ToolTip="Unesite jedinstvenu oznaku etikete.">
+            <TextBox.Text>
+                <Binding Path="Oznaka" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:IzmenaSpomenikValidationRules ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition  Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </Grid>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+        <Label x:Name="labelBoja" Content="Boja etikete: " HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelOpis" Content="Opis etikete: " HorizontalAlignment="Left" Margin="9,96,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="92" Margin="109,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="252" ToolTip="Unesite opis etikete."/>
+        <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="78" Height="34"/>
+        <Button x:Name="buttonCanel" Content="Cancel" HorizontalAlignment="Left" Margin="283,225,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="cancelClicked"/>
 
     </Grid>
 </Window>

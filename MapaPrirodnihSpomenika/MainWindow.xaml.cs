@@ -33,5 +33,17 @@ namespace MapaPrirodnihSpomenika
             IzmenaSpomenik izspm = new IzmenaSpomenik();
             izspm.Show();
         }
+
+        private void dodajEtiketuClicked(object sender, RoutedEventArgs e)
+        {
+            IzmenaTag it = new IzmenaTag();
+            it.Show();
+        }
+
+        private void dodajTipClicked(object sender, RoutedEventArgs e)
+        {
+            IzmenaTipSpomenika its = new IzmenaTipSpomenika();
+            its.Show();
+        }
     }
 }

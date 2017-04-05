@@ -16,5 +16,7 @@
         </Grid.ColumnDefinitions>
         <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60"/>
         <Button x:Name="buttonDodajSpomenik" Content="Dodaj spomenik" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajSpomClicked"/>
+        <Button x:Name="buttonDodajTip" Content="Dodaj etiketu" HorizontalAlignment="Left" Margin="208,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajEtiketuClicked"/>
+        <Button x:Name="button" Content="Dodaj tip" HorizontalAlignment="Left" Margin="109,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajTipClicked"/>
     </Grid>
 </Window>
