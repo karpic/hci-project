@@ -6,17 +6,36 @@
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika"
         mc:Ignorable="d"
         Title="Mapa prirodnih spomenika" Height="430" Width="750">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60"/>
-        <Button x:Name="buttonDodajSpomenik" Content="Dodaj spomenik" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajSpomClicked"/>
-        <Button x:Name="buttonDodajTip" Content="Dodaj etiketu" HorizontalAlignment="Left" Margin="208,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajEtiketuClicked"/>
-        <Button x:Name="button" Content="Dodaj tip" HorizontalAlignment="Left" Margin="109,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajTipClicked"/>
+    <Grid >
+        <DockPanel >
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="Novi spomenik" Click="noviSpomMenuClicked" />
+                    <MenuItem Header="Novi tip spomenika" Click="noviTipMenuClicked" />
+                    <MenuItem Header="Nova etiketa" Click="novaEtiketaMenuClicked" />
+                    <Separator/>
+                    <MenuItem Header="Otvori" />
+                    <MenuItem Header="Sacuvaj" />
+                    <Separator />
+                    <MenuItem Header="Izadji" Click="izadjiMenuClicked" />
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Header="Pomoc"/>
+                    <MenuItem Header="O autoru"/>
+
+                </MenuItem>
+            </Menu>
+
+
+            <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60" DockPanel.Dock="Right" Width="538"/>
+            <TreeView x:Name="treeView" Height="381" VerticalAlignment="Top" Width="200"/>
+
+        </DockPanel>
+        
+        <Button x:Name="buttonDodajSpomenik" Content="Dodaj spomenik" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajSpomClicked" DockPanel.Dock="Bottom"/>
+        <Button x:Name="buttonDodajTip" Content="Dodaj etiketu" HorizontalAlignment="Left" Margin="208,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajEtiketuClicked" DockPanel.Dock="Bottom"/>
+        <Button x:Name="button" Content="Dodaj tip" HorizontalAlignment="Left" Margin="109,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajTipClicked" DockPanel.Dock="Bottom" />
+        
+
     </Grid>
 </Window>
