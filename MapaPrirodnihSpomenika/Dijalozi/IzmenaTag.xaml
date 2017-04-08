@@ -8,10 +8,11 @@
         Title="Informacije o etiketi" Height="300" Width="390">
     <Grid>
         <Label x:Name="labelOznaka" Content="Oznaka etikete: " HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBox" HorizontalAlignment="Left" Height="23" Margin="104,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="257" ToolTip="Unesite jedinstvenu oznaku etikete.">
+        <TextBox x:Name="txtBoxOznaka" HorizontalAlignment="Left" Height="23" Margin="104,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="257" ToolTip="Unesite jedinstvenu oznaku etikete.">
             <TextBox.Text>
                 <Binding Path="Oznaka" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
+                        <local:EmptyValidationRule ValidationStep="RawProposedValue"/>
                         <local:IzmenaSpomenikValidationRules ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
@@ -38,7 +39,7 @@
         <Label x:Name="labelBoja" Content="Boja etikete: " HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelOpis" Content="Opis etikete: " HorizontalAlignment="Left" Margin="9,96,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="92" Margin="109,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="252" ToolTip="Unesite opis etikete."/>
-        <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="78" Height="34"/>
+        <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="okClicked"/>
         <Button x:Name="buttonCanel" Content="Cancel" HorizontalAlignment="Left" Margin="283,225,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="cancelClicked"/>
 
     </Grid>

@@ -73,5 +73,15 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         {
             this.Close();
         }
+
+        private void buttonOK_Click(object sender, RoutedEventArgs e)
+        {
+            forceValidation();
+        }
+        private void forceValidation()
+        {
+           txtBoxOznaka.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+           textBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
     }
 }

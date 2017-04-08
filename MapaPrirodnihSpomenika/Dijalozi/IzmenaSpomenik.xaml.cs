@@ -139,6 +139,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             //
             */
             forceValidation();
+
         }
         private void forceValidation()
         {
