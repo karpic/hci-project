@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MapaPrirodnihSpomenika.Model;
 
 namespace MapaPrirodnihSpomenika.Dijalozi
 {
@@ -106,6 +107,43 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         private void cancelClicked(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void okClicked(object sender, RoutedEventArgs e)
+        {
+            /*Spomenik s;
+            String oznaka = txtBoxOznakaSpomenika.Text;
+            String ime = txtBoxImeSpomenika.Text;
+            String opis = txtBoxOpis.Text;
+            String klima = comboBoxKlima.Text;
+            String ikonicaPutanja = "";
+            Boolean ekoUgrozen;
+            if (comboBoxEkoUgorzen.Text.Equals("Da"))
+            {
+                ekoUgrozen = true;
+            }
+            else
+            {
+                ekoUgrozen = false;
+            }
+            Boolean naseljen;
+            if (comboBoxNaselje.Text.Equals("Da"))
+            {
+                naseljen = true;
+            }
+            else
+            {
+                naseljen = false;
+            }
+            double prihod = Double.Parse(txtBoxGodPrihod.Text);
+            //
+            */
+            forceValidation();
+        }
+        private void forceValidation()
+        {
+            txtBoxImeSpomenika.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            txtBoxOznakaSpomenika.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }

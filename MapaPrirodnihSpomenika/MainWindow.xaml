@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika"
         mc:Ignorable="d"
-        Title="Mapa prirodnih spomenika" Height="430" Width="750">
-    <Grid >
+        Title="Mapa prirodnih spomenika" Height="430" Width="750" ResizeMode="NoResize">
+    <Grid>
         <DockPanel >
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
@@ -28,14 +28,35 @@
 
 
             <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60" DockPanel.Dock="Right" Width="538"/>
-            <TreeView x:Name="treeView" Height="381" VerticalAlignment="Top" Width="200"/>
+            <TabControl x:Name="tabControl" Height="321" VerticalAlignment="Top" Width="205" DockPanel.Dock="Left">
+                <TabItem Header="Spomenici" Margin="0,-2,-6,0">
+                    <TreeView Margin="0,0,10,0" Width="188">
+                        
+                    </TreeView>
+                </TabItem>
+                <TabItem Header="Tipovi" Margin="-2,-2,-15,0">
+                    <TreeView Margin="0,0,9,0" Width="188">
+                        
+                    </TreeView>
+                </TabItem>
+                <TabItem Header="Etikete" Margin="13,-2,-30,0">
+                    <TreeView HorizontalAlignment="Left" Width="188" Margin="0,1,0,-1">
+                        
+                    </TreeView>
+                </TabItem>
+            </TabControl>
+
+
+
+
+
 
         </DockPanel>
-        
+
         <Button x:Name="buttonDodajSpomenik" Content="Dodaj spomenik" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajSpomClicked" DockPanel.Dock="Bottom"/>
         <Button x:Name="buttonDodajTip" Content="Dodaj etiketu" HorizontalAlignment="Left" Margin="208,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajEtiketuClicked" DockPanel.Dock="Bottom"/>
         <Button x:Name="button" Content="Dodaj tip" HorizontalAlignment="Left" Margin="109,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajTipClicked" DockPanel.Dock="Bottom" />
-        
 
     </Grid>
+
 </Window>

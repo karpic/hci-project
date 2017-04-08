@@ -27,6 +27,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             }
         }
     }
+
     public class StringToDoubleValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
@@ -43,7 +44,27 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             }
             catch
             {
-                return new ValidationResult(false, "Unknown error occured.");
+                return new ValidationResult(false, "Nepoznata greska.");
+            }
+        }
+    }
+
+    class EmptyValidationRule : System.Windows.Controls.ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            try
+            {
+                var s = value as string;
+                if (!string.IsNullOrEmpty(s))
+                {
+                    return new ValidationResult(true, null);
+                }
+                return new ValidationResult(false, "Polje ne sme ostati prazno!");
+            }
+            catch
+            {
+                return new ValidationResult(false, "Nepoznata greska.");
             }
         }
     }

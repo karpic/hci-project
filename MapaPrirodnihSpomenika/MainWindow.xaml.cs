@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MapaPrirodnihSpomenika.Dijalozi;
+using MapaPrirodnihSpomenika.Model;
 
 namespace MapaPrirodnihSpomenika
 {
@@ -21,12 +22,29 @@ namespace MapaPrirodnihSpomenika
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        private static MainWindow instance;
+        private List<Spomenik> spomenici; 
         
         public MainWindow()
         {
             InitializeComponent();
         }
+        public static MainWindow Instance
+        {
+            get
+            {
+                if(instance == null)
+                {
+                    instance = new MainWindow();
+                }
+                return instance;
+            }
+        }
+
+        /*public void dodajSpomenik(Spomenik s)
+        {
+            spomenici.Add(s);
+        }*/
 
         private void dodajSpomClicked(object sender, RoutedEventArgs e)
         {

@@ -17,6 +17,8 @@
             <TextBox.Text>
                 <Binding Path="Oznaka" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
+                        
+                        <local:EmptyValidationRule ValidationStep="RawProposedValue"/>
                         <local:IzmenaSpomenikValidationRules ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
@@ -44,6 +46,8 @@
             <TextBox.Text>
                 <Binding Path="Ime" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
+                        
+                        <local:EmptyValidationRule ValidationStep="RawProposedValue"/>
                         <local:IzmenaSpomenikValidationRules ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
@@ -105,7 +109,7 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <DatePicker HorizontalAlignment="Left" Margin="123,460,0,0" VerticalAlignment="Top" Width="252" Text="Izaberite datum">
+        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="123,460,0,0" VerticalAlignment="Top" Width="252" Text="Izaberite datum">
             <DatePicker.Resources>
                 <Style TargetType="{x:Type DatePickerTextBox}">
                     <Setter Property="Text" Value="Izaberite datum" />
@@ -114,7 +118,7 @@
             </DatePicker.Resources>
         </DatePicker>
         <Label x:Name="labelDatOtrivanja" Content="Datum otkrivanja: " HorizontalAlignment="Left" Margin="13,459,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="25,507,0,0" VerticalAlignment="Top" Width="78" Height="34"/>
+        <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="25,507,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="okClicked"/>
         <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="306,507,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="cancelClicked"/>
         <ComboBox x:Name="comboBoxEkoUgorzen" HorizontalAlignment="Left" Margin="124,315,0,0" VerticalAlignment="Top" Width="251"/>
         <ComboBox x:Name="comboBoxNaselje" HorizontalAlignment="Left" Margin="124,346,0,0" VerticalAlignment="Top" Width="251"/>
