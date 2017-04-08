@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MapaPrirodnihSpomenika.Model
 {
-    class Tip
+    public class Tip
     {
         private String oznaka;
         private String ime;

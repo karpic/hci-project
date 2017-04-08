@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace MapaPrirodnihSpomenika.Model
 {
-    class Spomenik
+    public class Spomenik
     {
         private String _oznaka { get; set; }
         private String _ime { get; set; }
@@ -35,6 +35,12 @@ namespace MapaPrirodnihSpomenika.Model
             this._prihod = prihod;
             this._datum = datum;
             this._tagovi = tagovi;
+        }
+        public Spomenik(String oznaka, String ime, String opis)
+        {
+            this._oznaka = oznaka;
+            this._ime = ime;
+            this._opis = opis;
         }
     }
 }

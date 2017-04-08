@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace MapaPrirodnihSpomenika.Model
 {
-    class Tag
+    public class Tag
     {
         private String _oznaka;
         private Color _boja;

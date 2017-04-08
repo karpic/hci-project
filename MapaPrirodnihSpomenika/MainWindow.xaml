@@ -30,9 +30,9 @@
             <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60" DockPanel.Dock="Right" Width="538"/>
             <TabControl x:Name="tabControl" Height="321" VerticalAlignment="Top" Width="205" DockPanel.Dock="Left">
                 <TabItem Header="Spomenici" Margin="0,-2,-6,0">
-                    <TreeView Margin="0,0,10,0" Width="188">
+                    <ListView x:Name="listViewSpomenici">
                         
-                    </TreeView>
+                    </ListView>
                 </TabItem>
                 <TabItem Header="Tipovi" Margin="-2,-2,-15,0">
                     <TreeView Margin="0,0,9,0" Width="188">

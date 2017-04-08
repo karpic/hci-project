@@ -58,13 +58,6 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
             }
         }
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
 
         public string Oznaka
         {
@@ -81,6 +74,16 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
             }
         }
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        
 
         public IzmenaSpomenik()
         {
@@ -111,35 +114,12 @@ namespace MapaPrirodnihSpomenika.Dijalozi
 
         private void okClicked(object sender, RoutedEventArgs e)
         {
-            /*Spomenik s;
-            String oznaka = txtBoxOznakaSpomenika.Text;
-            String ime = txtBoxImeSpomenika.Text;
-            String opis = txtBoxOpis.Text;
-            String klima = comboBoxKlima.Text;
-            String ikonicaPutanja = "";
-            Boolean ekoUgrozen;
-            if (comboBoxEkoUgorzen.Text.Equals("Da"))
-            {
-                ekoUgrozen = true;
-            }
-            else
-            {
-                ekoUgrozen = false;
-            }
-            Boolean naseljen;
-            if (comboBoxNaselje.Text.Equals("Da"))
-            {
-                naseljen = true;
-            }
-            else
-            {
-                naseljen = false;
-            }
-            double prihod = Double.Parse(txtBoxGodPrihod.Text);
-            //
-            */
+         
             forceValidation();
-
+            if (!Validation.GetHasError(txtBoxImeSpomenika) && !Validation.GetHasError(txtBoxOznakaSpomenika))
+            {
+                //ovde ide kod ako sve validacije prodju 
+            }
         }
         private void forceValidation()
         {

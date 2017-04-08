@@ -24,9 +24,29 @@ namespace MapaPrirodnihSpomenika
     {
         private static MainWindow instance;
         private List<Spomenik> spomenici; 
-        
+        public List<Spomenik> Spomenici
+        {
+            get
+            {
+                return spomenici;
+            }
+            set{
+                if (value != spomenici)
+                {
+                    spomenici = value;
+                    OnPropertyChanged("Spomenici");
+                }
+            }
+        }
+
+        private void OnPropertyChanged(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         public MainWindow()
         {
+            
             InitializeComponent();
         }
         public static MainWindow Instance
@@ -85,6 +105,11 @@ namespace MapaPrirodnihSpomenika
         private void izadjiMenuClicked(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void dodajSpomenik(Spomenik s)
+        {
+            spomenici.Add(s);
         }
     }
 }
