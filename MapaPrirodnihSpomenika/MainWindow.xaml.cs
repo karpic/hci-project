@@ -14,40 +14,36 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MapaPrirodnihSpomenika.Dijalozi;
 using MapaPrirodnihSpomenika.Model;
+using System.Collections.ObjectModel;
 
 namespace MapaPrirodnihSpomenika
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         private static MainWindow instance;
-        private List<Spomenik> spomenici; 
-        public List<Spomenik> Spomenici
+        private ObservableCollection<Spomenik> spomenici;
+        private List<Tip> tipovi;
+
+        public ObservableCollection<Spomenik> Spomenici
         {
             get
             {
                 return spomenici;
             }
-            set{
-                if (value != spomenici)
-                {
-                    spomenici = value;
-                    OnPropertyChanged("Spomenici");
-                }
-            }
         }
-
         private void OnPropertyChanged(string v)
         {
             throw new NotImplementedException();
         }
 
         public MainWindow()
-        {
-            
+        { 
             InitializeComponent();
+            spomenici = new ObservableCollection<Spomenik>();
+            Spomenik s = new Spomenik("a", "a", "a");
+            spomenici.Add(s);
+            listViewSpomenici.ItemsSource = spomenici;
         }
         public static MainWindow Instance
         {
@@ -60,11 +56,10 @@ namespace MapaPrirodnihSpomenika
                 return instance;
             }
         }
-
-        /*public void dodajSpomenik(Spomenik s)
+        public void dodajSpomenik(Spomenik s)
         {
             spomenici.Add(s);
-        }*/
+        }
 
         private void dodajSpomClicked(object sender, RoutedEventArgs e)
         {
@@ -105,11 +100,6 @@ namespace MapaPrirodnihSpomenika
         private void izadjiMenuClicked(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        public void dodajSpomenik(Spomenik s)
-        {
-            spomenici.Add(s);
         }
     }
 }

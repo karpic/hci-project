@@ -28,10 +28,15 @@
 
 
             <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60" DockPanel.Dock="Right" Width="538"/>
-            <TabControl x:Name="tabControl" Height="321" VerticalAlignment="Top" Width="205" DockPanel.Dock="Left">
+            <TabControl x:Name="tabControl" Height="321" VerticalAlignment="Top" Width="208" DockPanel.Dock="Left">
                 <TabItem Header="Spomenici" Margin="0,-2,-6,0">
                     <ListView x:Name="listViewSpomenici">
-                        
+                        <ListView.View>
+                            <GridView x:Name="grdNames">
+                                <GridViewColumn Header="Ime"  DisplayMemberBinding="{Binding Ime}" Width="50"/>
+                                <GridViewColumn Header="Oznaka"  DisplayMemberBinding="{Binding Oznakaa}" Width="50"/>
+                            </GridView>
+                        </ListView.View>
                     </ListView>
                 </TabItem>
                 <TabItem Header="Tipovi" Margin="-2,-2,-15,0">

@@ -119,6 +119,9 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             if (!Validation.GetHasError(txtBoxImeSpomenika) && !Validation.GetHasError(txtBoxOznakaSpomenika))
             {
                 //ovde ide kod ako sve validacije prodju 
+                Spomenik s = new Spomenik("Oznaka", "Ime", "Opis");
+                MainWindow.Instance.dodajSpomenik(s);
+                this.Close();
             }
         }
         private void forceValidation()
