@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.Dijalozi"
+        xmlns:nsMain="clr-namespace:MapaPrirodnihSpomenika"
         mc:Ignorable="d"
         Title="Informacije o spomeniku" Height="585" Width="400" ResizeMode="NoResize">
     <Grid RenderTransformOrigin="0.51,0.411">
@@ -73,7 +74,13 @@
         </TextBox>
 
         <TextBox x:Name="txtBoxOpis" HorizontalAlignment="Left" Height="92" Margin="124,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251" ToolTip="Unesite opis spomenika."/>
-        <ComboBox x:Name="cbTipSpomenika" HorizontalAlignment="Left" Margin="124,214,0,0" VerticalAlignment="Top" Width="251"/>
+        <ComboBox x:Name="cbTipSpomenika" HorizontalAlignment="Left" Margin="124,214,0,0" VerticalAlignment="Top" Width="251" ItemsSource="{Binding Tipovi}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Ime}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="124,245,0,0" VerticalAlignment="Top" Width="251" ></ComboBox>
         <Label x:Name="labelIkonica" Content="Ikonica: " HorizontalAlignment="Left" Margin="13,275,0,0" VerticalAlignment="Top"/>
         <Button x:Name="buttonIconPicker" Content="Izaberi ikonicu..." HorizontalAlignment="Left" Margin="124,278,0,0" VerticalAlignment="Top" Width="101"/>

@@ -28,15 +28,17 @@ namespace MapaPrirodnihSpomenika
             set;
             get;
         }
+        public static ObservableCollection<Tip> Tipovi
+        {
+            set;
+            get;
+        }
         public MainWindow()
         { 
             InitializeComponent();
             this.DataContext = this;
             Spomenici = new ObservableCollection<Spomenik>();
-            Spomenik s = new Spomenik("a", "a", "a");
-            Spomenik s1 = new Model.Spomenik("s", "s", "s");
-            Spomenici.Add(s);
-            Spomenici.Add(s1);
+            Tipovi = new ObservableCollection<Tip>();
         }
       
         public void dodajSpomenik(Spomenik s)

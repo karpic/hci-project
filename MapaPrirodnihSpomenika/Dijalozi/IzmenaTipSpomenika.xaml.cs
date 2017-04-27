@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MapaPrirodnihSpomenika.Model;
 
 namespace MapaPrirodnihSpomenika.Dijalozi
 {
@@ -20,7 +21,14 @@ namespace MapaPrirodnihSpomenika.Dijalozi
     /// </summary>
     public partial class IzmenaTipSpomenika : Window, INotifyPropertyChanged
     {
-        private string _oznaka;
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
         private string _ime;
         public string Ime_tipa
         {
@@ -38,14 +46,8 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             }
         }
 
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
+        
+        private string _oznaka;
         public string Oznaka_tipa
         {
             get
@@ -61,13 +63,30 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
             }
         }
+
+        private string _opis;
+        public string Opis_tipa
+        {
+            get
+            {
+                return _opis;
+            }
+            set
+            {
+                if (value != _opis)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
         public IzmenaTipSpomenika()
         {
             InitializeComponent();
             this.DataContext = this;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+
 
         private void cancelClicked(object sender, RoutedEventArgs e)
         {
@@ -77,6 +96,14 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         private void buttonOK_Click(object sender, RoutedEventArgs e)
         {
             forceValidation();
+            if (!Validation.GetHasError(txtBoxOznaka) && !Validation.GetHasError(textBox))
+            {
+                //ovde ide kod ako sve validacije prodju 
+                Tip t = new Tip(_oznaka, _ime, _opis);
+                MainWindow.Tipovi.Add(t);
+                
+                this.Close();
+            }
         }
         private void forceValidation()
         {

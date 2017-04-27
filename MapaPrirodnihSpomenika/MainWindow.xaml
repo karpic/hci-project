@@ -45,8 +45,17 @@
                     </TreeView>
                 </TabItem>
                 <TabItem Header="Tipovi" Margin="-2,-2,-15,0">
-                    <TreeView Margin="0,0,9,0" Width="188">
-                        
+                    <TreeView Name="treeTipovi" ItemsSource="{Binding Tipovi}">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type modelNs:Tip}" ItemsSource="{Binding Tipovi}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tip: "/>
+                                    <TextBlock Text="{Binding Ime}"/>
+                                    <TextBlock Text=" Oznaka: "/>
+                                    <TextBlock Text="{Binding Oznaka}"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
                     </TreeView>
                 </TabItem>
                 <TabItem Header="Etikete" Margin="13,-2,-30,0">
