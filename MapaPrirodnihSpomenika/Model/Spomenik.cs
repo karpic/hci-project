@@ -8,11 +8,22 @@ using System.Windows.Media;
 
 namespace MapaPrirodnihSpomenika.Model
 {
-    public class Spomenik 
+    public class Spomenik : INotifyPropertyChanged
     {
-        private String _oznaka { get; set; }
-        private String _ime { get; set; }
-        private String _opis { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        private String _oznaka;
+        private String _ime;
+        private String _opis;
+
+      
         private Tip _tip { get; set; }
         private String _klima { get; set; }
         //kako ikonicu sacuvati
@@ -29,6 +40,14 @@ namespace MapaPrirodnihSpomenika.Model
             {
                 return _ime;
             }
+            set
+            {
+                if (_ime != value)
+                {
+                    _ime = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
         }
         public string Oznaka
         {
@@ -36,7 +55,17 @@ namespace MapaPrirodnihSpomenika.Model
             {
                 return _oznaka;
             }
+            set
+            {
+                if (_oznaka != value)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
         }
+
+  
 
         public Spomenik(String oznaka, String ime, String opis, Tip tip, String klima, String ikonicaPutanja, Boolean ekoUgorzen, Boolean naseljen, double prihod, DateTime datum, List<Tag> tagovi)
         {

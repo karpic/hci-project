@@ -120,7 +120,8 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             {
                 //ovde ide kod ako sve validacije prodju 
                 Spomenik s = new Spomenik("Oznaka", "Ime", "Opis");
-                MainWindow.Instance.dodajSpomenik(s);
+                
+                MainWindow.Spomenici.Add(s);
                 this.Close();
             }
         }

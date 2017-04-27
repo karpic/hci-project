@@ -15,50 +15,35 @@ using System.Windows.Shapes;
 using MapaPrirodnihSpomenika.Dijalozi;
 using MapaPrirodnihSpomenika.Model;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace MapaPrirodnihSpomenika
 {
 
     public partial class MainWindow : Window
     {
-        private static MainWindow instance;
-        private ObservableCollection<Spomenik> spomenici;
-        private List<Tip> tipovi;
 
-        public ObservableCollection<Spomenik> Spomenici
+        public static ObservableCollection<Spomenik> Spomenici
         {
-            get
-            {
-                return spomenici;
-            }
+            set;
+            get;
         }
-        private void OnPropertyChanged(string v)
-        {
-            throw new NotImplementedException();
-        }
-
         public MainWindow()
         { 
             InitializeComponent();
-            spomenici = new ObservableCollection<Spomenik>();
+            this.DataContext = this;
+            Spomenici = new ObservableCollection<Spomenik>();
             Spomenik s = new Spomenik("a", "a", "a");
-            spomenici.Add(s);
-            listViewSpomenici.ItemsSource = spomenici;
+            Spomenik s1 = new Model.Spomenik("s", "s", "s");
+            Spomenici.Add(s);
+            Spomenici.Add(s1);
         }
-        public static MainWindow Instance
-        {
-            get
-            {
-                if(instance == null)
-                {
-                    instance = new MainWindow();
-                }
-                return instance;
-            }
-        }
+      
         public void dodajSpomenik(Spomenik s)
         {
-            spomenici.Add(s);
+            Spomenici.Add(s);
+            
+            
         }
 
         private void dodajSpomClicked(object sender, RoutedEventArgs e)

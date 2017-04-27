@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika"
+        xmlns:modelNs ="clr-namespace:MapaPrirodnihSpomenika.Model"
         mc:Ignorable="d"
         Title="Mapa prirodnih spomenika" Height="430" Width="750" ResizeMode="NoResize">
     <Grid>
@@ -29,15 +30,19 @@
 
             <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60" DockPanel.Dock="Right" Width="538"/>
             <TabControl x:Name="tabControl" Height="321" VerticalAlignment="Top" Width="208" DockPanel.Dock="Left">
-                <TabItem Header="Spomenici" Margin="0,-2,-6,0">
-                    <ListView x:Name="listViewSpomenici">
-                        <ListView.View>
-                            <GridView x:Name="grdNames">
-                                <GridViewColumn Header="Ime"  DisplayMemberBinding="{Binding Ime}" Width="50"/>
-                                <GridViewColumn Header="Oznaka"  DisplayMemberBinding="{Binding Oznakaa}" Width="50"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                <TabItem Header="Spomenici">
+                    <TreeView Name="treeViewSpomenici" ItemsSource="{Binding Spomenici}">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type modelNs:Spomenik}" ItemsSource="{Binding Spomenici}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Spomenik: "/>
+                                    <TextBlock Text="{Binding Ime}"/>
+                                    <TextBlock Text=" Oznaka: "/>
+                                    <TextBlock Text="{Binding Oznaka}"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
                 </TabItem>
                 <TabItem Header="Tipovi" Margin="-2,-2,-15,0">
                     <TreeView Margin="0,0,9,0" Width="188">
