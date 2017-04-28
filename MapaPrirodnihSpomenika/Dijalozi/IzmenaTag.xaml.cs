@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using MapaPrirodnihSpomenika.Model;
 namespace MapaPrirodnihSpomenika.Dijalozi
 {
     /// <summary>
@@ -20,6 +20,15 @@ namespace MapaPrirodnihSpomenika.Dijalozi
     /// </summary>
     public partial class IzmenaTag : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
         private string _oznaka;
 
         public string Oznaka
@@ -38,13 +47,20 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string name)
+        private String _opis;
+        public String Opis
         {
-            if (PropertyChanged != null)
+            get
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                return _opis;
+            }
+            set
+            {
+                if (value != _opis)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Opis");
+                }
             }
         }
 
@@ -64,6 +80,14 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         private void okClicked(object sender, RoutedEventArgs e)
         {
             forceValidation();
+            if (!Validation.GetHasError(txtBoxOznaka))
+            {
+                //ovde ide kod ako sve validacije prodju 
+                Tag t = new Tag(_oznaka, Color.FromRgb(1, 1, 1), _opis);
+
+                MainWindow.Tagovi.Add(t);
+                this.Close();
+            }
         }
         private void forceValidation()
         {

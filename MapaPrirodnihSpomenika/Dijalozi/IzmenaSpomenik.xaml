@@ -80,6 +80,11 @@
                     <TextBlock Text="{Binding Ime}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
+            <ComboBox.Text>
+                <Binding Path="Tip">
+                    
+                </Binding>
+            </ComboBox.Text>
         </ComboBox>
         <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="124,245,0,0" VerticalAlignment="Top" Width="251" ></ComboBox>
         <Label x:Name="labelIkonica" Content="Ikonica: " HorizontalAlignment="Left" Margin="13,275,0,0" VerticalAlignment="Top"/>

@@ -59,23 +59,70 @@
                     </TreeView>
                 </TabItem>
                 <TabItem Header="Etikete" Margin="13,-2,-30,0">
-                    <TreeView HorizontalAlignment="Left" Width="188" Margin="0,1,0,-1">
-                        
+                    <TreeView Name="treeViewTagovi" ItemsSource="{Binding Tagovi}">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type modelNs:Tag}" ItemsSource="{Binding Tagovi}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tag: "/>
+                                    <TextBlock Text="{Binding Oznaka}"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
                     </TreeView>
                 </TabItem>
             </TabControl>
-
-
-
-
-
+            
 
         </DockPanel>
 
         <Button x:Name="buttonDodajSpomenik" Content="Dodaj spomenik" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajSpomClicked" DockPanel.Dock="Bottom"/>
         <Button x:Name="buttonDodajTip" Content="Dodaj etiketu" HorizontalAlignment="Left" Margin="208,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajEtiketuClicked" DockPanel.Dock="Bottom"/>
         <Button x:Name="button" Content="Dodaj tip" HorizontalAlignment="Left" Margin="109,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajTipClicked" DockPanel.Dock="Bottom" />
-
+        <Button x:Name="buttonIzmeniSpomenik" Content="Izmeni spomenik" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="okClicked">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonIzmeniTip" Content="Izmeni tip" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonIzmeniTag" Content="Izmeni etiketu" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 
 </Window>

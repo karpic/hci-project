@@ -33,12 +33,18 @@ namespace MapaPrirodnihSpomenika
             set;
             get;
         }
+        public static ObservableCollection<Tag> Tagovi
+        {
+            set;
+            get;
+        }
         public MainWindow()
         { 
             InitializeComponent();
             this.DataContext = this;
             Spomenici = new ObservableCollection<Spomenik>();
             Tipovi = new ObservableCollection<Tip>();
+            Tagovi = new ObservableCollection<Tag>();
         }
       
         public void dodajSpomenik(Spomenik s)
@@ -87,6 +93,13 @@ namespace MapaPrirodnihSpomenika
         private void izadjiMenuClicked(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void okClicked(object sender, RoutedEventArgs e)
+        {
+            Spomenik selectedSpomenik = (Spomenik)treeViewSpomenici.SelectedItem;
+            IzmenaSpomenik iz = new IzmenaSpomenik(selectedSpomenik);
+            iz.Show();
         }
     }
 }

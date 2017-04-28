@@ -21,44 +21,17 @@ namespace MapaPrirodnihSpomenika.Dijalozi
     /// </summary>
     public partial class IzmenaSpomenik : Window, INotifyPropertyChanged
     {
-        private string _ime;
-        private string _oznaka;
-        private double _prihod;
-
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public string Ime
+        protected virtual void OnPropertyChanged(string name)
         {
-            get
+            if (PropertyChanged != null)
             {
-                return _ime;
-            }
-            set
-            {
-                if (value != _ime)
-                {
-                    _ime = value;
-                    OnPropertyChanged("Ime");
-                }
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        public double Prihod
-        {
-            get
-            {
-                return _prihod;
-            }
-            set
-            {
-                if (value != _prihod)
-                {
-                    _prihod = value;
-                    OnPropertyChanged("Prihod");
-                }
-            }
-        }
-
+        Boolean constructor2used = false;
+        Spomenik constructor2spomenik;
+        private string _oznaka;
         public string Oznaka
         {
             get
@@ -74,17 +47,98 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
             }
         }
-
-        protected virtual void OnPropertyChanged(string name)
+        private string _ime;
+        public string Ime
         {
-            if (PropertyChanged != null)
+            get
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                return _ime;
+            }
+            set
+            {
+                if (value != _ime)
+                {
+                    _ime = value;
+                    OnPropertyChanged("Ime");
+                }
             }
         }
-
+        private string _opis;
+        public string Opis
+        {
+            get
+            {
+                return _opis;
+            }
+            set
+            {
+                if (value != _opis)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
+        private string _tip;
+        public string Tip
+        {
+            get
+            {
+                return _tip;
+            }
+            set
+            {
+                if (value != _tip)
+                {
+                    _tip = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
+        private string _klima;
+        public string Klima
+        {
+            get
+            {
+                return _klima;
+            }
+            set
+            {
+                if (value != _klima)
+                {
+                    _klima = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
+        private double _prihod;
+        public double Prihod
+        {
+            get
+            {
+                return _prihod;
+            }
+            set
+            {
+                if (value != _prihod)
+                {
+                    _prihod = value;
+                    OnPropertyChanged("Prihod");
+                }
+            }
+        }
         
 
+        
+        public IzmenaSpomenik(Spomenik s)
+        {
+            InitializeComponent();
+            this.DataContext = this;
+            constructor2used = true;
+            constructor2spomenik = s;
+            this._oznaka = s.Oznaka;
+            this._ime = s.Ime;
+        }
         public IzmenaSpomenik()
         {
             InitializeComponent();
@@ -119,10 +173,23 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             if (!Validation.GetHasError(txtBoxImeSpomenika) && !Validation.GetHasError(txtBoxOznakaSpomenika))
             {
                 //ovde ide kod ako sve validacije prodju 
+                if (constructor2used)
+                {
+                    constructor2spomenik.Ime = _ime;
+                    constructor2spomenik.Oznaka = _oznaka;
+                    var currentSpomenik = constructor2spomenik;
+                    int index = MainWindow.Spomenici.IndexOf(currentSpomenik);
+                    MainWindow.Spomenici.Remove(currentSpomenik);
+                    MainWindow.Spomenici.Insert(index, currentSpomenik);
+                    this.Close();
+                }
+                else
+                {
+                    Spomenik s = new Spomenik(_oznaka, _ime, _opis);
+                    MainWindow.Spomenici.Add(s);
+                    this.Close();
+                }
                 
-                
-                //MainWindow.Spomenici.Add(s);
-                this.Close();
             }
         }
         private void forceValidation()
