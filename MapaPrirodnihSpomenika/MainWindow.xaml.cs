@@ -101,5 +101,37 @@ namespace MapaPrirodnihSpomenika
             IzmenaSpomenik iz = new IzmenaSpomenik(selectedSpomenik);
             iz.Show();
         }
+
+        private void izmeniTipClicked(object sender, RoutedEventArgs e)
+        {
+            Tip selectedTip = (Tip)treeTipovi.SelectedItem;
+            IzmenaTipSpomenika iz = new IzmenaTipSpomenika(selectedTip);
+            iz.Show();
+        }
+
+        private void izmeniTagClicked(object sender, RoutedEventArgs e)
+        {
+            Tag selectedTag = (Tag)treeViewTagovi.SelectedItem;
+            IzmenaTag iz = new IzmenaTag(selectedTag);
+            iz.Show();
+        }
+
+        private void obrisiSpomenikClicked(object sender, RoutedEventArgs e)
+        {
+            Spomenik spomenikToDelete = (Spomenik)treeViewSpomenici.SelectedItem;
+            Spomenici.Remove(spomenikToDelete);
+        }
+
+        private void obrisiTipClicked(object sender, RoutedEventArgs e)
+        {
+            Tip tipToDelete = (Tip)treeTipovi.SelectedItem;
+            Tipovi.Remove(tipToDelete);
+        }
+
+        private void obrisiTagClicked(object sender, RoutedEventArgs e)
+        {
+            Tag tagToDelete = (Tag)treeViewTagovi.SelectedItem;
+            Tagovi.Remove(tagToDelete);
+        }
     }
 }

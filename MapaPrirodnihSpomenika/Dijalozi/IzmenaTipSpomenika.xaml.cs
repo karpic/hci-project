@@ -29,6 +29,8 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
+        Boolean constructor2used;
+        Tip constructor2tip;
         private string _ime;
         public string Ime_tipa
         {
@@ -85,7 +87,16 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             InitializeComponent();
             this.DataContext = this;
         }
-
+        public IzmenaTipSpomenika(Tip t)
+        {
+            InitializeComponent();
+            this.DataContext = this;
+            constructor2used = true;
+            constructor2tip = t;
+            Ime_tipa = t.Ime;
+            Opis_tipa = t.Opis;
+            Oznaka_tipa = t.Oznaka;
+        }
 
 
         private void cancelClicked(object sender, RoutedEventArgs e)
@@ -99,10 +110,24 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             if (!Validation.GetHasError(txtBoxOznaka) && !Validation.GetHasError(textBox))
             {
                 //ovde ide kod ako sve validacije prodju 
-                Tip t = new Tip(_oznaka, _ime, _opis);
-                MainWindow.Tipovi.Add(t);
-                
-                this.Close();
+                if (constructor2used)
+                {
+                    constructor2tip.Ime = Ime_tipa;
+                    constructor2tip.Oznaka = Oznaka_tipa;
+                    constructor2tip.Opis = Opis_tipa;
+                    var currentTip = constructor2tip;
+                    int index = MainWindow.Tipovi.IndexOf(currentTip);
+                    MainWindow.Tipovi.Remove(currentTip);
+                    MainWindow.Tipovi.Insert(index, currentTip);
+                    this.Close();
+                }
+                else
+                {
+                    Tip t = new Tip(_oznaka, _ime, _opis);
+                    MainWindow.Tipovi.Add(t);
+
+                    this.Close();
+                }
             }
         }
         private void forceValidation()

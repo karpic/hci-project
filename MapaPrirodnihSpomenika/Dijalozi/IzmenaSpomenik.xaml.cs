@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MapaPrirodnihSpomenika.Model;
+using System.Collections.ObjectModel;
 
 namespace MapaPrirodnihSpomenika.Dijalozi
 {
@@ -31,6 +32,11 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         }
         Boolean constructor2used = false;
         Spomenik constructor2spomenik;
+        public ObservableCollection<Tip> Tipovi
+        {
+            set;
+            get;
+        }
         private string _oznaka;
         public string Oznaka
         {
@@ -75,7 +81,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 if (value != _opis)
                 {
                     _opis = value;
-                    OnPropertyChanged("Ime");
+                    OnPropertyChanged("Opis");
                 }
             }
         }
@@ -91,7 +97,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 if (value != _tip)
                 {
                     _tip = value;
-                    OnPropertyChanged("Ime");
+                    OnPropertyChanged("Tip");
                 }
             }
         }
@@ -107,12 +113,60 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 if (value != _klima)
                 {
                     _klima = value;
-                    OnPropertyChanged("Ime");
+                    OnPropertyChanged("Klima");
                 }
             }
         }
-        private double _prihod;
-        public double Prihod
+        private String _eko_ugrozen;
+        public String Eko_ugrozen
+        {
+            get
+            {
+                return _eko_ugrozen;
+            }
+            set
+            {
+                if (value != _eko_ugrozen)
+                {
+                    _eko_ugrozen = value;
+                    OnPropertyChanged("Eko_ugrozen");
+                }
+            }
+        }
+        private String _naseljen;
+        public String Naseljen
+        {
+            get
+            {
+                return _naseljen;
+            }
+            set
+            {
+                if (value != _naseljen)
+                {
+                    _naseljen = value;
+                    OnPropertyChanged("Naseljen");
+                }
+            }
+        }
+        private String _status;
+        public String Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                if (value != _status)
+                {
+                    _status = value;
+                    OnPropertyChanged("Status");
+                }
+            }
+        }
+        private int _prihod;
+        public int Prihod
         {
             get
             {
@@ -127,7 +181,22 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
             }
         }
-        
+        private DateTime _datum;
+        public DateTime Datum
+        {
+            get
+            {
+                return _datum;
+            }
+            set
+            {
+                if (value != _datum)
+                {
+                    _datum = value;
+                    OnPropertyChanged("Datum");
+                }
+            }
+        }
 
         
         public IzmenaSpomenik(Spomenik s)
@@ -136,13 +205,54 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             this.DataContext = this;
             constructor2used = true;
             constructor2spomenik = s;
-            this._oznaka = s.Oznaka;
-            this._ime = s.Ime;
+            Tipovi = MainWindow.Tipovi;
+            Oznaka = s.Oznaka;
+            Ime = s.Ime;
+            Opis = s.Opis;
+            //hendlovanje tipa...
+            this.comboBoxKlima.Items.Add("Polarna");
+            this.comboBoxKlima.Items.Add("Kontinentalna");
+            this.comboBoxKlima.Items.Add("Umereno-kontinentalna");
+            this.comboBoxKlima.Items.Add("Pustinjska");
+            this.comboBoxKlima.Items.Add("Suptropska");
+            this.comboBoxKlima.Items.Add("Tropska");
+            Klima = s.Klima;
+            this.comboBoxKlima.SelectedIndex = comboBoxKlima.Items.IndexOf(Klima);
+            if (s.Ugrozen)
+            {
+                Eko_ugrozen = "Da";
+            }
+            else
+            {
+                Eko_ugrozen = "Ne";
+            }
+            this.comboBoxEkoUgorzen.Items.Add("Da");
+            this.comboBoxEkoUgorzen.Items.Add("Ne");
+            this.comboBoxEkoUgorzen.SelectedIndex = comboBoxEkoUgorzen.Items.IndexOf(Eko_ugrozen);
+            if (s.Naseljen)
+            {
+                Naseljen = "Da";
+            }
+            else
+            {
+                Naseljen = "Ne";
+            }
+            this.comboBoxNaselje.Items.Add("Da");
+            this.comboBoxNaselje.Items.Add("Ne");
+            this.comboBoxNaselje.SelectedIndex = comboBoxNaselje.Items.IndexOf(Naseljen);
+            Status = s.Turisticki_status;
+            this.comboBoxTurStatus.Items.Add("Eksploatisan");
+            this.comboBoxTurStatus.Items.Add("Dostupan");
+            this.comboBoxTurStatus.Items.Add("Nedostupan");
+            this.comboBoxTurStatus.SelectedIndex = comboBoxTurStatus.Items.IndexOf(Status);
+            Prihod = s.Prihod;
+            Datum = Datum;
         }
         public IzmenaSpomenik()
         {
             InitializeComponent();
             this.DataContext = this;
+            Tipovi = MainWindow.Tipovi;
             this.comboBoxKlima.Items.Add("Polarna");
             this.comboBoxKlima.Items.Add("Kontinentalna");
             this.comboBoxKlima.Items.Add("Umereno-kontinentalna");
@@ -175,8 +285,29 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 //ovde ide kod ako sve validacije prodju 
                 if (constructor2used)
                 {
-                    constructor2spomenik.Ime = _ime;
-                    constructor2spomenik.Oznaka = _oznaka;
+                    constructor2spomenik.Ime = Ime;
+                    constructor2spomenik.Oznaka = Oznaka;
+                    constructor2spomenik.Opis = Opis;
+                    constructor2spomenik.Klima = Klima;
+                    if (Eko_ugrozen.Equals("Da"))
+                    {
+                        constructor2spomenik.Ugrozen = true;
+                    }
+                    else
+                    {
+                        constructor2spomenik.Ugrozen = false;
+                    }
+                    if (Naseljen.Equals("Da"))
+                    {
+                        constructor2spomenik.Naseljen = true;
+                    }
+                    else
+                    {
+                        constructor2spomenik.Naseljen = false;
+                    }
+                    constructor2spomenik.Turisticki_status = Status;
+                    constructor2spomenik.Prihod = Prihod;
+                    constructor2spomenik.Datum = Datum;
                     var currentSpomenik = constructor2spomenik;
                     int index = MainWindow.Spomenici.IndexOf(currentSpomenik);
                     MainWindow.Spomenici.Remove(currentSpomenik);
@@ -185,8 +316,45 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
                 else
                 {
-                    Spomenik s = new Spomenik(_oznaka, _ime, _opis);
-                    MainWindow.Spomenici.Add(s);
+                    //Spomenik s = new Spomenik(_oznaka, _ime, _opis);
+
+                    String oznaka = Oznaka;
+                    String ime = Ime;
+                    String opis = Opis;
+                    Tip tip;
+                    foreach (Tip t in MainWindow.Tipovi)
+                    {
+                        if (t.Oznaka.Equals(Oznaka))
+                        {
+                            tip = t;
+                        }
+                    }
+                    String klima = Klima;
+                    int prihod = Prihod;
+                    Boolean ugrozen;
+                    if (Eko_ugrozen.Equals("Da"))
+                    {
+                        ugrozen = true;
+                    }
+                    else
+                    {
+                        ugrozen = false;
+                    }
+                    Boolean naseljen;
+                    if (Naseljen.Equals("Da"))
+                    {
+                        naseljen = true;
+                    }
+                    else
+                    {
+                        naseljen = false;
+                    }
+                    String status = Status;
+                    DateTime datum = Datum;
+                    Spomenik sp = new Spomenik(oznaka, ime, opis, klima, "", ugrozen, naseljen, status, prihod, datum);
+                    //MainWindow.Spomenici.Add(s);
+                    //this.Close();
+                    MainWindow.Spomenici.Add(sp);
                     this.Close();
                 }
                 

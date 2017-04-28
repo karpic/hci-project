@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.Dijalozi"
-        xmlns:nsMain="clr-namespace:MapaPrirodnihSpomenika"
         mc:Ignorable="d"
         Title="Informacije o spomeniku" Height="585" Width="400" ResizeMode="NoResize">
     <Grid RenderTransformOrigin="0.51,0.411">
@@ -73,26 +72,14 @@
             </Validation.ErrorTemplate>
         </TextBox>
 
-        <TextBox x:Name="txtBoxOpis" HorizontalAlignment="Left" Height="92" Margin="124,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251" ToolTip="Unesite opis spomenika."/>
-        <ComboBox x:Name="cbTipSpomenika" HorizontalAlignment="Left" Margin="124,214,0,0" VerticalAlignment="Top" Width="251" ItemsSource="{Binding Tipovi}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Ime}"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-            <ComboBox.Text>
-                <Binding Path="Tip">
-                    
-                </Binding>
-            </ComboBox.Text>
-        </ComboBox>
-        <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="124,245,0,0" VerticalAlignment="Top" Width="251" ></ComboBox>
+        <TextBox x:Name="txtBoxOpis" HorizontalAlignment="Left" Height="92" Margin="124,116,0,0" TextWrapping="Wrap" Text="{Binding Opis}" VerticalAlignment="Top" Width="251" ToolTip="Unesite opis spomenika."/>
+        <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="124,245,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Klima}"></ComboBox>
         <Label x:Name="labelIkonica" Content="Ikonica: " HorizontalAlignment="Left" Margin="13,275,0,0" VerticalAlignment="Top"/>
         <Button x:Name="buttonIconPicker" Content="Izaberi ikonicu..." HorizontalAlignment="Left" Margin="124,278,0,0" VerticalAlignment="Top" Width="101"/>
         <Label x:Name="labelEco" Content="Ekoloski ugrozen: " HorizontalAlignment="Left" Margin="13,311,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelNaseljeno" Content="Naseljeni region: " HorizontalAlignment="Left" Margin="13,342,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelTurStatus" Content="Turistički status: " HorizontalAlignment="Left" Margin="13,373,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.009,-0.231"/>
-        <ComboBox x:Name="comboBoxTurStatus" HorizontalAlignment="Left" Margin="124,373,0,0" VerticalAlignment="Top" Width="251"/>
+        <ComboBox x:Name="comboBoxTurStatus" HorizontalAlignment="Left" Margin="124,373,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Status}"/>
         <Label x:Name="labelGodPrihod" Content="Godišnji prihod: " HorizontalAlignment="Left" Margin="13,404,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtBoxGodPrihod" HorizontalAlignment="Left" Height="23" Margin="124,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" ToolTip="Unesite godisnji prihod od turizma." SpellCheck.IsEnabled="True">
             <TextBox.Text>
@@ -121,19 +108,14 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="123,460,0,0" VerticalAlignment="Top" Width="252" Text="Izaberite datum">
-            <DatePicker.Resources>
-                <Style TargetType="{x:Type DatePickerTextBox}">
-                    <Setter Property="Text" Value="Izaberite datum" />
-                    <Setter Property="Background" Value="AliceBlue" />
-                </Style>
-            </DatePicker.Resources>
-        </DatePicker>
+        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="123,460,0,0" VerticalAlignment="Top" Width="252" SelectedDate="{Binding Datum}"/>
+
         <Label x:Name="labelDatOtrivanja" Content="Datum otkrivanja: " HorizontalAlignment="Left" Margin="13,459,0,0" VerticalAlignment="Top"/>
         <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="25,507,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="okClicked"/>
         <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="306,507,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="cancelClicked"/>
-        <ComboBox x:Name="comboBoxEkoUgorzen" HorizontalAlignment="Left" Margin="124,315,0,0" VerticalAlignment="Top" Width="251"/>
-        <ComboBox x:Name="comboBoxNaselje" HorizontalAlignment="Left" Margin="124,346,0,0" VerticalAlignment="Top" Width="251"/>
+        <ComboBox x:Name="comboBoxEkoUgorzen" HorizontalAlignment="Left" Margin="124,315,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Eko_ugrozen}"/>
+        <ComboBox x:Name="comboBoxNaselje" HorizontalAlignment="Left" Margin="124,346,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Naseljen}"/>
+        <ComboBox x:Name="comboBoxTip" HorizontalAlignment="Left" Margin="123,214,0,0" VerticalAlignment="Top" Width="252" ItemsSource="{Binding Tipovi}" DisplayMemberPath="Oznaka" Text="{Binding Tip}"/>
 
     </Grid>
 </Window>

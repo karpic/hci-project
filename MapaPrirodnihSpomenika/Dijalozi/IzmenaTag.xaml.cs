@@ -29,6 +29,8 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
+        Boolean constructor2used;
+        Tag constructor2tag;
         private string _oznaka;
 
         public string Oznaka
@@ -68,8 +70,18 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         {
             InitializeComponent();
             this.DataContext = this;
+            constructor2used = false;
         }
+        public IzmenaTag(Tag t)
+        {
+            InitializeComponent();
+            this.DataContext = this;
+            constructor2used = true;
+            constructor2tag = t;
+            Oznaka = t.Oznaka;
+            Opis = t.Opis;
 
+        }
        
 
         private void cancelClicked(object sender, RoutedEventArgs e)
@@ -83,10 +95,23 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             if (!Validation.GetHasError(txtBoxOznaka))
             {
                 //ovde ide kod ako sve validacije prodju 
-                Tag t = new Tag(_oznaka, Color.FromRgb(1, 1, 1), _opis);
+                if (constructor2used)
+                {
+                    constructor2tag.Opis = Opis;
+                    constructor2tag.Oznaka = Oznaka;
+                    var currentTag = constructor2tag;
+                    int index = MainWindow.Tagovi.IndexOf(currentTag);
+                    MainWindow.Tagovi.Remove(currentTag);
+                    MainWindow.Tagovi.Insert(index, currentTag);
+                    this.Close();
+                }
+                else
+                {
+                    Tag t = new Tag(_oznaka, _opis);
 
-                MainWindow.Tagovi.Add(t);
-                this.Close();
+                    MainWindow.Tagovi.Add(t);
+                    this.Close();
+                }
             }
         }
         private void forceValidation()

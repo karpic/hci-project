@@ -93,7 +93,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="buttonIzmeniTip" Content="Izmeni tip" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45">
+        <Button x:Name="buttonIzmeniTip" Content="Izmeni tip" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="izmeniTipClicked">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Visibility" Value="Visible" />
@@ -108,7 +108,52 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="buttonIzmeniTag" Content="Izmeni etiketu" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45">
+        <Button x:Name="buttonIzmeniTag" Content="Izmeni etiketu" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="izmeniTagClicked">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonObrisiSpomenik" Content="Obrisi spomenik" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiSpomenikClicked">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonObrisiTip" Content="Obrisi tip" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiTipClicked">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonObrisiTag" Content="Obrisi etiketu" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiTagClicked">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Visibility" Value="Visible" />

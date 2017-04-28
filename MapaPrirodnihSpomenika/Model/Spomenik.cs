@@ -199,11 +199,18 @@ namespace MapaPrirodnihSpomenika.Model
                 }
             }
         }
-        public Spomenik(String oznaka, String ime, String opis, Tip tip, String klima, String ikonicaPutanja, Boolean ekoUgorzen, Boolean naseljen, double prihod, DateTime datum, List<Tag> tagovi)
+        public Spomenik(String oznaka, String ime, String opis, String klima, String ikonica, Boolean ugrozen, Boolean naseljen, String tur_status, int prihod, DateTime datum)
         {
             this._oznaka = oznaka;
             this._ime = ime;
             this._opis = opis;
+            this._klima = klima;
+            this._ikonica_putanja = ikonica;
+            this._ugrozen = ugrozen;
+            this._naseljen = naseljen;
+            this._turisticki_status = tur_status;
+            this._prihod = prihod;
+            this._datum = datum;
             
         }
         //test konstruktor

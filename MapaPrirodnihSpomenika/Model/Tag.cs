@@ -10,7 +10,7 @@ namespace MapaPrirodnihSpomenika.Model
     public class Tag
     {
         private String _oznaka;
-        private Color _boja;
+        //private Color _boja;
         private String _opis;
 
         public string Opis
@@ -39,10 +39,10 @@ namespace MapaPrirodnihSpomenika.Model
             }
         }
 
-        public Tag(String oznaka, Color boja, String opis)
+        public Tag(String oznaka, String opis)
         {
             this._oznaka = oznaka;
-            this._boja = boja;
+            //this._boja = boja;
             this._opis = opis;
         }
     }
