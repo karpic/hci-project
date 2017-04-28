@@ -19,21 +19,8 @@ namespace MapaPrirodnihSpomenika.Model
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
-        private String _oznaka;
+
         private String _ime;
-        private String _opis;
-
-      
-        private Tip _tip { get; set; }
-        private String _klima { get; set; }
-        //kako ikonicu sacuvati
-        private String _ikonicaPutanja { get; set; }
-        private Boolean _ekoUgorzen { get; set; }
-        private Boolean _naseljen { get; set; }
-        private double _prihod { get; set; }
-        private DateTime _datum { get; set; }
-        private List<Tag> _tagovi { get; set; }
-
         public String Ime
         {
             get
@@ -49,6 +36,8 @@ namespace MapaPrirodnihSpomenika.Model
                 }
             }
         }
+
+        private String _oznaka;
         public string Oznaka
         {
             get
@@ -65,21 +54,157 @@ namespace MapaPrirodnihSpomenika.Model
             }
         }
 
-  
 
+        private String _opis;
+        public string Opis
+        {
+            get
+            {
+                return _opis;
+            }
+            set
+            {
+                if (_opis != value)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Opis");
+                }
+            }
+        }
+        private Tip _tip;
+        public Tip Tip
+        {
+            get
+            {
+                return _tip;
+            }
+            set
+            {
+                if (_tip != value)
+                {
+                    _tip = value;
+                    OnPropertyChanged("Tip");
+                }
+            }
+        }
+        private String _klima;
+        public String Klima
+        {
+            get
+            {
+                return _klima;
+            }
+            set
+            {
+                if (_klima != value)
+                {
+                    _klima = value;
+                    OnPropertyChanged("Tip");
+                }
+            }
+        }
+        private String _ikonica_putanja;
+        public String Ikonica
+        {
+            get
+            {
+                return _ikonica_putanja;
+            }
+            set
+            {
+                if (_ikonica_putanja != value)
+                {
+                    _ikonica_putanja = value;
+                    OnPropertyChanged("Ikonica");
+                }
+            }
+        }
+        private Boolean _ugrozen;
+        public Boolean Ugrozen
+        {
+            get
+            {
+                return _ugrozen;
+            }
+            set
+            {
+                if (_ugrozen != value)
+                {
+                    _ugrozen = value;
+                    OnPropertyChanged("Ugrozen");
+                }
+            }
+        }
+        private Boolean _naseljen;
+        public Boolean Naseljen
+        {
+            get
+            {
+                return _naseljen;
+            }
+            set
+            {
+                if (_naseljen != value)
+                {
+                    _naseljen = value;
+                    OnPropertyChanged("Naseljen");
+                }
+            }
+        }
+        private String _turisticki_status;
+        public String Turisticki_status
+        {
+            get
+            {
+                return _turisticki_status;
+            }
+            set
+            {
+                if (_turisticki_status != value)
+                {
+                    _turisticki_status = value;
+                    OnPropertyChanged("Status");
+                }
+            }
+        }
+        private int _prihod;
+        public int Prihod
+        {
+            get
+            {
+                return _prihod;
+            }
+            set
+            {
+                if (_prihod != value)
+                {
+                    _prihod = value;
+                    OnPropertyChanged("Prihod");
+                }
+            }
+        }
+        private DateTime _datum;
+        public DateTime Datum
+        {
+            get
+            {
+                return _datum;
+            }
+            set
+            {
+                if (_datum != value)
+                {
+                    _datum = value;
+                    OnPropertyChanged("Datum");
+                }
+            }
+        }
         public Spomenik(String oznaka, String ime, String opis, Tip tip, String klima, String ikonicaPutanja, Boolean ekoUgorzen, Boolean naseljen, double prihod, DateTime datum, List<Tag> tagovi)
         {
             this._oznaka = oznaka;
             this._ime = ime;
             this._opis = opis;
-            this._tip = tip;
-            this._klima = klima;
-            this._ikonicaPutanja = ikonicaPutanja;
-            this._ekoUgorzen = ekoUgorzen;
-            this._naseljen = naseljen;
-            this._prihod = prihod;
-            this._datum = datum;
-            this._tagovi = tagovi;
+            
         }
         //test konstruktor
         public Spomenik(String oznaka, String ime, String opis)
