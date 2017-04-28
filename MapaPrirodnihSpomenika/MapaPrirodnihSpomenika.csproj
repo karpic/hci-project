@@ -55,6 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TableView\TableViewSpomenik.xaml.cs">
+      <DependentUpon>TableViewSpomenik.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableView\tableViewTag.xaml.cs">
+      <DependentUpon>tableViewTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableView\tableViewTip.xaml.cs">
+      <DependentUpon>tableViewTip.xaml</DependentUpon>
+    </Compile>
     <Page Include="Dijalozi\IzmenaSpomenik.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +98,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TableView\TableViewSpomenik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TableView\tableViewTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TableView\tableViewTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Spomenik.cs" />
