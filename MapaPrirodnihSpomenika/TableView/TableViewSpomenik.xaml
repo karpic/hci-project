@@ -5,15 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.TableView"
         mc:Ignorable="d"
-        Title="TableViewSpomenik" Height="300" Width="300">
+        
+        Title="TableViewSpomenik" Height="300" Width="600">
+    <Window.Resources>
+        
+    </Window.Resources>
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+      
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" Grid.Row="0" x:Name="grdViewSpomenik" ItemsSource="{Binding Path=Spomenici}"></DataGrid>
+        <DataGrid Grid.Column="0" Grid.Row="0" x:Name="grdViewSpomenik" ItemsSource="{Binding Path=Spomenici}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Oznaka" Width="Auto" Binding="{Binding Oznaka}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ime" Width="Auto" Binding="{Binding Ime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Opis" Width="Auto" Binding="{Binding Opis}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Width="Auto" Binding="{Binding Oznaka}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Klima" Width="Auto" Binding="{Binding Klima}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ikonica" Width="Auto" Binding="{Binding Ikonica}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ugrozen" Width="Auto" Binding="{Binding Ugrozen}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naseljen" Width="Auto" Binding="{Binding Naseljen}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Turisticni status" Width="Auto" Binding="{Binding Turisticki_status}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Prihod" Width="Auto" Binding="{Binding Prihod}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding Datum}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

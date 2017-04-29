@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MapaPrirodnihSpomenika.Dijalozi;
 using MapaPrirodnihSpomenika.Model;
 using System.Collections.ObjectModel;
+using MapaPrirodnihSpomenika.TableView;
 using System.ComponentModel;
 
 namespace MapaPrirodnihSpomenika
@@ -132,6 +133,20 @@ namespace MapaPrirodnihSpomenika
         {
             Tag tagToDelete = (Tag)treeViewTagovi.SelectedItem;
             Tagovi.Remove(tagToDelete);
+        }
+
+        private void sviSpomeniciClicked(object sender, RoutedEventArgs e)
+        {
+            TableViewSpomenik tvs = new TableViewSpomenik();
+            tvs.DataContext = this;
+            tvs.Show();
+        }
+
+        private void sviTipoviClicked(object sender, RoutedEventArgs e)
+        {
+            TableViewTip tvt = new TableViewTip();
+            tvt.DataContext = this;
+            tvt.Show();
         }
     }
 }

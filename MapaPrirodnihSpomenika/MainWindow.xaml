@@ -168,6 +168,51 @@
                 </Style>
             </Button.Style>
         </Button>
+        <Button x:Name="buttonSviSpomenici" Content="Svi spomenici" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="sviSpomeniciClicked" >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonSviTipovi" Content="Svi tipovi" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="sviTipoviClicked">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonSviTagovi" Content="Sve etikete" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 
 </Window>

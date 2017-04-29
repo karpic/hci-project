@@ -1,12 +1,26 @@
-﻿<Window x:Class="MapaPrirodnihSpomenika.TableView.tableViewTip"
+﻿<Window x:Class="MapaPrirodnihSpomenika.TableView.TableViewTip"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.TableView"
         mc:Ignorable="d"
-        Title="tableViewTip" Height="300" Width="300">
+        Title="TableViewTip" Height="300" Width="300">
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" Grid.Row="0" x:Name="grdViewSpomenik" ItemsSource="{Binding Path=Tipovi}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Oznaka" Width="Auto" Binding="{Binding Oznaka}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ime" Width="Auto" Binding="{Binding Ime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Opis" Width="Auto" Binding="{Binding Opis}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MapaPrirodnihSpomenika.TableView
 {
     /// <summary>
-    /// Interaction logic for tableViewTip.xaml
+    /// Interaction logic for TableViewTip.xaml
     /// </summary>
-    public partial class tableViewTip : Window
+    public partial class TableViewTip : Window
     {
-        public tableViewTip()
+        public TableViewTip()
         {
             InitializeComponent();
         }

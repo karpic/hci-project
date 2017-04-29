@@ -55,14 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TableView\BoolToValueConverter.cs" />
     <Compile Include="TableView\TableViewSpomenik.xaml.cs">
       <DependentUpon>TableViewSpomenik.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TableView\tableViewTag.xaml.cs">
-      <DependentUpon>tableViewTag.xaml</DependentUpon>
+    <Compile Include="TableView\TableViewTag.xaml.cs">
+      <DependentUpon>TableViewTag.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TableView\tableViewTip.xaml.cs">
-      <DependentUpon>tableViewTip.xaml</DependentUpon>
+    <Compile Include="TableView\TableViewTip.xaml.cs">
+      <DependentUpon>TableViewTip.xaml</DependentUpon>
     </Compile>
     <Page Include="Dijalozi\IzmenaSpomenik.xaml">
       <SubType>Designer</SubType>
@@ -102,11 +103,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TableView\tableViewTag.xaml">
+    <Page Include="TableView\TableViewTag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TableView\tableViewTip.xaml">
+    <Page Include="TableView\TableViewTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
