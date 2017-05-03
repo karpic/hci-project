@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\ListContainer.cs" />
     <Compile Include="TableView\BoolToValueConverter.cs" />
     <Compile Include="TableView\TableViewSpomenik.xaml.cs">
       <DependentUpon>TableViewSpomenik.xaml</DependentUpon>

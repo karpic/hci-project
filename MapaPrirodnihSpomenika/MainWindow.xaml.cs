@@ -18,6 +18,8 @@ using System.Collections.ObjectModel;
 using MapaPrirodnihSpomenika.TableView;
 using System.ComponentModel;
 using Microsoft.Win32;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace MapaPrirodnihSpomenika
 {
@@ -40,6 +42,7 @@ namespace MapaPrirodnihSpomenika
             set;
             get;
         }
+        private ListContainer container;
         private String _putanja;
         public MainWindow()
         { 
@@ -48,6 +51,7 @@ namespace MapaPrirodnihSpomenika
             Spomenici = new ObservableCollection<Spomenik>();
             Tipovi = new ObservableCollection<Tip>();
             Tagovi = new ObservableCollection<Tag>();
+            container = new ListContainer();
         }
       
         public void dodajSpomenik(Spomenik s)
@@ -160,24 +164,16 @@ namespace MapaPrirodnihSpomenika
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            container.tipovi = Tipovi;
+            container.tagovi = Tagovi;
+            container.spomenici = Spomenici;
 
-            //openFileDialog1.InitialDirectory = "c:\\";
-            //openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //openFileDialog1.FilterIndex = 2;
-            //openFileDialog1.RestoreDirectory = true;
-            //System.Windows.Forms.DialogResult result = openFileDialog1
-            //if (openFileDialog1.ShowDialog() == )
-            //{
-            //    try
-            //    {
-            //        _putanja = openFileDialog1.FileName;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-            //    }
-            //}
+            XmlSerializer mySerializer = new
+            XmlSerializer(typeof(ListContainer));
+            // To write to a file, create a StreamWriter object.  
+            StreamWriter myWriter = new StreamWriter("listContainerSerialized.xml");
+            mySerializer.Serialize(myWriter, container);
+            myWriter.Close();
         }
     }
 }
