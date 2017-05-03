@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MapaPrirodnihSpomenika.Model;
 using System.Collections.ObjectModel;
+using Microsoft.Win32;
 
 namespace MapaPrirodnihSpomenika.Dijalozi
 {
@@ -50,6 +51,22 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 {
                     _oznaka = value;
                     OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+        private string _putanja;
+        public string Putanja
+        {
+            get
+            {
+                return _putanja;
+            }
+            set
+            {
+                if (value != _putanja)
+                {
+                    _putanja = value;
+                    OnPropertyChanged("Putanja");
                 }
             }
         }
@@ -308,6 +325,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     constructor2spomenik.Turisticki_status = Status;
                     constructor2spomenik.Prihod = Prihod;
                     constructor2spomenik.Datum = Datum;
+                    constructor2spomenik.Ikonica = Putanja;
                     var currentSpomenik = constructor2spomenik;
                     int index = MainWindow.Spomenici.IndexOf(currentSpomenik);
                     MainWindow.Spomenici.Remove(currentSpomenik);
@@ -350,8 +368,9 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                         naseljen = false;
                     }
                     String status = Status;
+                    String putanja = Putanja;
                     DateTime datum = Datum;
-                    Spomenik sp = new Spomenik(oznaka, ime, opis, klima, "", ugrozen, naseljen, status, prihod, datum);
+                    Spomenik sp = new Spomenik(oznaka, ime, opis, klima, putanja, ugrozen, naseljen, status, prihod, datum);
                     //MainWindow.Spomenici.Add(s);
                     //this.Close();
                     MainWindow.Spomenici.Add(sp);
@@ -364,6 +383,22 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         {
             txtBoxImeSpomenika.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             txtBoxOznakaSpomenika.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
+
+        private void izaberiIkonicuClicked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Windows.Forms.OpenFileDialog open = new System.Windows.Forms.OpenFileDialog(); open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                if (open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Putanja = open.FileName;
+                }
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Failed loading image");
+            }
         }
     }
 }

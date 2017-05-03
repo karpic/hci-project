@@ -51,6 +51,22 @@ namespace MapaPrirodnihSpomenika.Model
             }
         }
         //Kako hendlovati ikonicu?
+        private String _putanja_ikonica;
+        public String Putanja
+        {
+            get
+            {
+                return _putanja_ikonica;
+            }
+            set
+            {
+                if (_putanja_ikonica != value)
+                {
+                    _putanja_ikonica = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
         private String _opis;
         public String Opis
         {
@@ -69,11 +85,12 @@ namespace MapaPrirodnihSpomenika.Model
         }
 
 
-        public Tip(String oznaka, String ime, String opis)
+        public Tip(String oznaka, String ime, String opis, String putanja)
         {
             this._oznaka = oznaka;
             this._ime = ime;
             this._opis = opis;
+            this._putanja_ikonica = putanja;
         }
     }
 }

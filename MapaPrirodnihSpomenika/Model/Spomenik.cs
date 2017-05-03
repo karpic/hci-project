@@ -213,12 +213,6 @@ namespace MapaPrirodnihSpomenika.Model
             this._datum = datum;
             
         }
-        //test konstruktor
-        public Spomenik(String oznaka, String ime, String opis)
-        {
-            this._oznaka = oznaka;
-            this._ime = ime;
-            this._opis = opis;
-        }
+
     }
 }

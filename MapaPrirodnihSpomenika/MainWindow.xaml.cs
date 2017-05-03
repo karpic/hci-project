@@ -17,10 +17,11 @@ using MapaPrirodnihSpomenika.Model;
 using System.Collections.ObjectModel;
 using MapaPrirodnihSpomenika.TableView;
 using System.ComponentModel;
+using Microsoft.Win32;
 
 namespace MapaPrirodnihSpomenika
 {
-
+    [Serializable]
     public partial class MainWindow : Window
     {
 
@@ -39,6 +40,7 @@ namespace MapaPrirodnihSpomenika
             set;
             get;
         }
+        private String _putanja;
         public MainWindow()
         { 
             InitializeComponent();
@@ -147,6 +149,35 @@ namespace MapaPrirodnihSpomenika
             TableViewTip tvt = new TableViewTip();
             tvt.DataContext = this;
             tvt.Show();
+        }
+
+        private void sviTagoviClicked(object sender, RoutedEventArgs e)
+        {
+            TableViewTag tvt = new TableViewTag();
+            tvt.DataContext = this;
+            tvt.Show();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            //openFileDialog1.InitialDirectory = "c:\\";
+            //openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            //openFileDialog1.FilterIndex = 2;
+            //openFileDialog1.RestoreDirectory = true;
+            //System.Windows.Forms.DialogResult result = openFileDialog1
+            //if (openFileDialog1.ShowDialog() == )
+            //{
+            //    try
+            //    {
+            //        _putanja = openFileDialog1.FileName;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+            //    }
+            //}
         }
     }
 }

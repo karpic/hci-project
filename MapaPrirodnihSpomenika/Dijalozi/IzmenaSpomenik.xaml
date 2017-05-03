@@ -17,7 +17,7 @@
             <TextBox.Text>
                 <Binding Path="Oznaka" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        
+
                         <local:EmptyValidationRule ValidationStep="RawProposedValue"/>
                         <local:IzmenaSpomenikValidationRules ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
@@ -46,7 +46,7 @@
             <TextBox.Text>
                 <Binding Path="Ime" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        
+
                         <local:EmptyValidationRule ValidationStep="RawProposedValue"/>
                         <local:IzmenaSpomenikValidationRules ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
@@ -75,7 +75,7 @@
         <TextBox x:Name="txtBoxOpis" HorizontalAlignment="Left" Height="92" Margin="124,116,0,0" TextWrapping="Wrap" Text="{Binding Opis}" VerticalAlignment="Top" Width="251" ToolTip="Unesite opis spomenika."/>
         <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="124,245,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Klima}"></ComboBox>
         <Label x:Name="labelIkonica" Content="Ikonica: " HorizontalAlignment="Left" Margin="13,275,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonIconPicker" Content="Izaberi ikonicu..." HorizontalAlignment="Left" Margin="124,278,0,0" VerticalAlignment="Top" Width="101"/>
+        <Button x:Name="buttonIconPicker" Content="Izaberi ikonicu..." HorizontalAlignment="Left" Margin="124,278,0,0" VerticalAlignment="Top" Width="101" Click="izaberiIkonicuClicked"/>
         <Label x:Name="labelEco" Content="Ekoloski ugrozen: " HorizontalAlignment="Left" Margin="13,311,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelNaseljeno" Content="Naseljeni region: " HorizontalAlignment="Left" Margin="13,342,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelTurStatus" Content="Turistički status: " HorizontalAlignment="Left" Margin="13,373,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.009,-0.231"/>
@@ -116,6 +116,7 @@
         <ComboBox x:Name="comboBoxEkoUgorzen" HorizontalAlignment="Left" Margin="124,315,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Eko_ugrozen}"/>
         <ComboBox x:Name="comboBoxNaselje" HorizontalAlignment="Left" Margin="124,346,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Naseljen}"/>
         <ComboBox x:Name="comboBoxTip" HorizontalAlignment="Left" Margin="123,214,0,0" VerticalAlignment="Top" Width="252" ItemsSource="{Binding Tipovi}" DisplayMemberPath="Oznaka" Text="{Binding Tip}"/>
+        <Image x:Name="ikonicaImgBox" HorizontalAlignment="Left" Height="35" Margin="254,275,0,0" VerticalAlignment="Top" Width="51" RenderTransformOrigin="0.49,0.486" Source="{Binding Putanja}"/>
 
     </Grid>
 </Window>

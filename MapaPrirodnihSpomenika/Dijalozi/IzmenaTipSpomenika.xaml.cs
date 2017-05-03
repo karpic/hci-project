@@ -82,6 +82,22 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
             }
         }
+        private string _putanja;
+        public string Putanja
+        {
+            get
+            {
+                return _putanja;
+            }
+            set
+            {
+                if (value != _putanja)
+                {
+                    _putanja = value;
+                    OnPropertyChanged("Putanja");
+                }
+            }
+        }
         public IzmenaTipSpomenika()
         {
             InitializeComponent();
@@ -115,6 +131,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     constructor2tip.Ime = Ime_tipa;
                     constructor2tip.Oznaka = Oznaka_tipa;
                     constructor2tip.Opis = Opis_tipa;
+                    constructor2tip.Putanja = Putanja;
                     var currentTip = constructor2tip;
                     int index = MainWindow.Tipovi.IndexOf(currentTip);
                     MainWindow.Tipovi.Remove(currentTip);
@@ -123,7 +140,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
                 else
                 {
-                    Tip t = new Tip(_oznaka, _ime, _opis);
+                    Tip t = new Tip(_oznaka, _ime, _opis, _putanja);
                     MainWindow.Tipovi.Add(t);
 
                     this.Close();
@@ -134,6 +151,22 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         {
            txtBoxOznaka.GetBindingExpression(TextBox.TextProperty).UpdateSource();
            textBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
+
+        private void izaberiteIkonicuClicked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Windows.Forms.OpenFileDialog open = new System.Windows.Forms.OpenFileDialog(); open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                if (open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Putanja = open.FileName;
+                }
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Failed loading image");
+            }
         }
     }
 }
