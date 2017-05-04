@@ -65,6 +65,22 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
             }
         }
+        private Color _boja;
+        public Color Boja
+        {
+            get
+            {
+                return _boja;
+            }
+            set
+            {
+                if (value != _boja)
+                {
+                    _boja = value;
+                    OnPropertyChanged("Boja");
+                }
+            }
+        }
 
         public IzmenaTag()
         {
@@ -80,7 +96,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             constructor2tag = t;
             Oznaka = t.Oznaka;
             Opis = t.Opis;
-
+            Boja = t.Boja;
         }
        
 
@@ -99,6 +115,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 {
                     constructor2tag.Opis = Opis;
                     constructor2tag.Oznaka = Oznaka;
+                    constructor2tag.Boja = Boja;
                     var currentTag = constructor2tag;
                     int index = MainWindow.Tagovi.IndexOf(currentTag);
                     MainWindow.Tagovi.Remove(currentTag);
@@ -107,7 +124,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
                 else
                 {
-                    Tag t = new Tag(_oznaka, _opis);
+                    Tag t = new Tag(_oznaka, _opis, _boja);
 
                     MainWindow.Tagovi.Add(t);
                     this.Close();

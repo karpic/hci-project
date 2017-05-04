@@ -108,7 +108,7 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="123,460,0,0" VerticalAlignment="Top" Width="252" SelectedDate="{Binding Datum}"/>
+        <DatePicker x:Name="datePicker1" HorizontalAlignment="Left" Margin="123,460,0,0" VerticalAlignment="Top" Width="252" SelectedDate="{Binding Datum}"/>
 
         <Label x:Name="labelDatOtrivanja" Content="Datum otkrivanja: " HorizontalAlignment="Left" Margin="13,459,0,0" VerticalAlignment="Top"/>
         <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="25,507,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="okClicked"/>

@@ -15,7 +15,7 @@
                     <MenuItem Header="Novi tip spomenika" Click="noviTipMenuClicked" />
                     <MenuItem Header="Nova etiketa" Click="novaEtiketaMenuClicked" />
                     <Separator/>
-                    <MenuItem Header="Otvori" />
+                    <MenuItem Header="Otvori" Click="MenuItem_Click_1"/>
                     <MenuItem Header="Sacuvaj" Click="MenuItem_Click"/>
                     <Separator />
                     <MenuItem Header="Izadji" Click="izadjiMenuClicked" />
@@ -65,6 +65,11 @@
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type modelNs:Tag}" ItemsSource="{Binding Tagovi}">
                                 <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="20" Height="20">
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="{Binding Boja}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
                                     <TextBlock Text="Tag: "/>
                                     <TextBlock Text="{Binding Oznaka}"/>
                                 </StackPanel>

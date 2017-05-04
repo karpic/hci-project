@@ -92,5 +92,9 @@ namespace MapaPrirodnihSpomenika.Model
             this._opis = opis;
             this._putanja_ikonica = putanja;
         }
+        public Tip()
+        {
+
+        }
     }
 }

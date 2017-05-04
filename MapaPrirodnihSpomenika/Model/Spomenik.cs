@@ -213,6 +213,9 @@ namespace MapaPrirodnihSpomenika.Model
             this._datum = datum;
             
         }
+        public Spomenik()
+        {
 
+        }
     }
 }

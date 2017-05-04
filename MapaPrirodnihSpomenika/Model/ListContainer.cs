@@ -7,29 +7,30 @@ using System.Threading.Tasks;
 
 namespace MapaPrirodnihSpomenika.Model
 {
-    [Serializable]
+    
     public class ListContainer
     {
-        public ObservableCollection<Spomenik> spomenici
+        public ObservableCollection<Spomenik> Spomenici
         {
             get;
             set;
         }
-        public ObservableCollection<Tip> tipovi
+        public ObservableCollection<Tip> Tipovi
         {
             get;
             set;
         }
-        public ObservableCollection<Tag> tagovi
+        public ObservableCollection<Tag> Tagovi
         {
             get;
             set;
         }
         public ListContainer()
         {
-            spomenici = new ObservableCollection<Spomenik>();
-            tipovi = new ObservableCollection<Tip>();
-            tagovi = new ObservableCollection<Tag>();
+            Spomenici = new ObservableCollection<Spomenik>();
+            Tipovi = new ObservableCollection<Tip>();
+            Tagovi = new ObservableCollection<Tag>();
         }
+        
     }
 }

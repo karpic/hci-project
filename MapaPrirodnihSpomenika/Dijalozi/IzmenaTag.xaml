@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.Dijalozi"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         Title="Informacije o etiketi" Height="300" Width="390">
     <Grid>
@@ -36,9 +37,10 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <Label x:Name="labelBoja" Content="Boja etikete: " HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+        <wpfTool:ColorPicker Margin="104,54,21,174" Name="colorPicker" SelectedColor="{Binding Boja}"></wpfTool:ColorPicker>
+        <Label x:Name="labelBoja" Content="Boja etikete: " HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelOpis" Content="Opis etikete: " HorizontalAlignment="Left" Margin="9,96,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="92" Margin="109,100,0,0" TextWrapping="Wrap" Text="{Binding Opis}" VerticalAlignment="Top" Width="252" ToolTip="Unesite opis etikete."/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="92" Margin="104,100,0,0" TextWrapping="Wrap" Text="{Binding Opis}" VerticalAlignment="Top" Width="257" ToolTip="Unesite opis etikete."/>
         <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="okClicked"/>
         <Button x:Name="buttonCanel" Content="Cancel" HorizontalAlignment="Left" Margin="283,225,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="cancelClicked"/>
 

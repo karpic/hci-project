@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,43 +8,79 @@ using System.Windows.Media;
 
 namespace MapaPrirodnihSpomenika.Model
 {
-    public class Tag
+    public class Tag : INotifyPropertyChanged
     {
-        private String _oznaka;
-        //private Color _boja;
-        private String _opis;
+        
 
-        public string Opis
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private String _opis;
+        public String Opis
         {
             get
             {
                 return _opis;
             }
-
             set
             {
-                _opis = value;
+                if (_opis != value)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Opis");
+                }
             }
         }
 
-        public string Oznaka
+        private String _oznaka;
+        public String Oznaka
         {
             get
             {
                 return _oznaka;
             }
-
             set
             {
-                _oznaka = value;
+                if (_oznaka != value)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+        private Color _boja;
+        public Color Boja
+        {
+            get
+            {
+                return _boja;
+            }
+            set
+            {
+                if (_boja != value)
+                {
+                    _boja = value;
+                    OnPropertyChanged("Boja");
+                }
             }
         }
 
-        public Tag(String oznaka, String opis)
+        public Tag(String oznaka, String opis, Color boja)
         {
             this._oznaka = oznaka;
-            //this._boja = boja;
+            this._boja = boja;
             this._opis = opis;
+        }
+        public Tag()
+        {
+
         }
     }
 

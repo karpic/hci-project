@@ -161,12 +161,12 @@ namespace MapaPrirodnihSpomenika
             tvt.DataContext = this;
             tvt.Show();
         }
-
+        //sacuvaj dugme iz menija
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            container.tipovi = Tipovi;
-            container.tagovi = Tagovi;
-            container.spomenici = Spomenici;
+            container.Tipovi = Tipovi;
+            container.Tagovi = Tagovi;
+            container.Spomenici = Spomenici;
 
             XmlSerializer mySerializer = new
             XmlSerializer(typeof(ListContainer));
@@ -174,6 +174,26 @@ namespace MapaPrirodnihSpomenika
             StreamWriter myWriter = new StreamWriter("listContainerSerialized.xml");
             mySerializer.Serialize(myWriter, container);
             myWriter.Close();
+        }
+        //otvori dugme iz menija
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            //ListContainer container = null;
+            string path = "listContainerSerialized.xml";
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ListContainer));
+
+            StreamReader reader = new StreamReader(path);
+            container = (ListContainer)serializer.Deserialize(reader);
+            reader.Close();
+
+            Tipovi = container.Tipovi;
+            Tagovi = container.Tagovi;
+            Spomenici = container.Spomenici;
+
+            treeViewSpomenici.ItemsSource = Spomenici;
+            treeViewTagovi.ItemsSource = Tagovi;
+            treeTipovi.ItemsSource = Tipovi;
         }
     }
 }

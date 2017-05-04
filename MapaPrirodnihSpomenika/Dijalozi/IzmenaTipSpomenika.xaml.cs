@@ -112,6 +112,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             Ime_tipa = t.Ime;
             Opis_tipa = t.Opis;
             Oznaka_tipa = t.Oznaka;
+            Putanja = t.Putanja;
         }
 
 

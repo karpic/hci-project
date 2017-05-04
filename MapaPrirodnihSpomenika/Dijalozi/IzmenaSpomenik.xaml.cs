@@ -263,13 +263,15 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             this.comboBoxTurStatus.Items.Add("Nedostupan");
             this.comboBoxTurStatus.SelectedIndex = comboBoxTurStatus.Items.IndexOf(Status);
             Prihod = s.Prihod;
-            Datum = Datum;
+            Datum = s.Datum;
+            Putanja = s.Ikonica;
         }
         public IzmenaSpomenik()
         {
             InitializeComponent();
             this.DataContext = this;
             Tipovi = MainWindow.Tipovi;
+            datePicker1.SelectedDate = DateTime.Today.AddDays(-1);
             this.comboBoxKlima.Items.Add("Polarna");
             this.comboBoxKlima.Items.Add("Kontinentalna");
             this.comboBoxKlima.Items.Add("Umereno-kontinentalna");
