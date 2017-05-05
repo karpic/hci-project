@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,11 @@ namespace MapaPrirodnihSpomenika.Model
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
-
+        public ObservableCollection<Tag> etiketeSpomenika
+        {
+            set;
+            get;
+        }
         private String _ime;
         public String Ime
         {
@@ -199,7 +204,7 @@ namespace MapaPrirodnihSpomenika.Model
                 }
             }
         }
-        public Spomenik(String oznaka, String ime, String opis, String klima, String ikonica, Boolean ugrozen, Boolean naseljen, String tur_status, int prihod, DateTime datum)
+        public Spomenik(String oznaka, String ime, String opis, Tip tip, String klima, String ikonica, Boolean ugrozen, Boolean naseljen, String tur_status, int prihod, DateTime datum, ObservableCollection<Tag> etikete)
         {
             this._oznaka = oznaka;
             this._ime = ime;
@@ -211,7 +216,8 @@ namespace MapaPrirodnihSpomenika.Model
             this._turisticki_status = tur_status;
             this._prihod = prihod;
             this._datum = datum;
-            
+            this._tip = tip;
+            this.etiketeSpomenika = etikete;
         }
         public Spomenik()
         {

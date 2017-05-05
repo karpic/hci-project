@@ -38,6 +38,11 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             set;
             get;
         }
+        public ObservableCollection<Tag> Tagovi
+        {
+            set;
+            get;
+        }
         private string _oznaka;
         public string Oznaka
         {
@@ -222,11 +227,14 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             this.DataContext = this;
             constructor2used = true;
             constructor2spomenik = s;
-            Tipovi = MainWindow.Tipovi;
+            
             Oznaka = s.Oznaka;
             Ime = s.Ime;
             Opis = s.Opis;
             //hendlovanje tipa...
+            Tipovi = MainWindow.Tipovi;
+            Tagovi = MainWindow.Tagovi;
+            this.comboBoxTip.SelectedIndex = comboBoxTip.Items.IndexOf(Tip);
             this.comboBoxKlima.Items.Add("Polarna");
             this.comboBoxKlima.Items.Add("Kontinentalna");
             this.comboBoxKlima.Items.Add("Umereno-kontinentalna");
@@ -271,7 +279,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             InitializeComponent();
             this.DataContext = this;
             Tipovi = MainWindow.Tipovi;
-            datePicker1.SelectedDate = DateTime.Today.AddDays(-1);
+            Tagovi = MainWindow.Tagovi;
             this.comboBoxKlima.Items.Add("Polarna");
             this.comboBoxKlima.Items.Add("Kontinentalna");
             this.comboBoxKlima.Items.Add("Umereno-kontinentalna");
@@ -328,6 +336,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     constructor2spomenik.Prihod = Prihod;
                     constructor2spomenik.Datum = Datum;
                     constructor2spomenik.Ikonica = Putanja;
+                    constructor2spomenik.Tip = getTip(Tip);
                     var currentSpomenik = constructor2spomenik;
                     int index = MainWindow.Spomenici.IndexOf(currentSpomenik);
                     MainWindow.Spomenici.Remove(currentSpomenik);
@@ -341,14 +350,8 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     String oznaka = Oznaka;
                     String ime = Ime;
                     String opis = Opis;
-                    Tip tip;
-                    foreach (Tip t in MainWindow.Tipovi)
-                    {
-                        if (t.Oznaka.Equals(Oznaka))
-                        {
-                            tip = t;
-                        }
-                    }
+                    
+                    
                     String klima = Klima;
                     int prihod = Prihod;
                     Boolean ugrozen;
@@ -372,7 +375,8 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     String status = Status;
                     String putanja = Putanja;
                     DateTime datum = Datum;
-                    Spomenik sp = new Spomenik(oznaka, ime, opis, klima, putanja, ugrozen, naseljen, status, prihod, datum);
+                    Tip tipSpomenika = getTip(Tip);
+                    Spomenik sp = new Spomenik(oznaka, ime, opis, tipSpomenika,  klima, putanja, ugrozen, naseljen, status, prihod, datum);
                     //MainWindow.Spomenici.Add(s);
                     //this.Close();
                     MainWindow.Spomenici.Add(sp);
@@ -380,6 +384,18 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                 }
                 
             }
+        }
+        public Tip getTip(String oznakaTrazenog)
+        {
+            Tip retVal = null;
+            foreach(Tip t in MainWindow.Tipovi)
+            {
+                if (t.Oznaka.Equals(oznakaTrazenog))
+                {
+                    retVal = t;
+                }
+            }
+            return retVal;
         }
         private void forceValidation()
         {
