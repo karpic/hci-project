@@ -63,7 +63,7 @@ namespace MapaPrirodnihSpomenika.Model
                 if (_putanja_ikonica != value)
                 {
                     _putanja_ikonica = value;
-                    OnPropertyChanged("Ime");
+                    OnPropertyChanged("Putanja");
                 }
             }
         }
