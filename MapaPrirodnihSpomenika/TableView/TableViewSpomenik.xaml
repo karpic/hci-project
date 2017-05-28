@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.TableView"
         mc:Ignorable="d"
         
-        Title="TableViewSpomenik" Height="300" Width="600">
+        Title="TableViewSpomenik" Height="500
+        " Width="600">
     <Window.Resources>
         
     </Window.Resources>
@@ -19,7 +20,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" Grid.Row="0" x:Name="grdViewSpomenik" ItemsSource="{Binding Path=Spomenici}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+        <DataGrid Grid.Column="0" Grid.Row="0" x:Name="grdViewSpomenik" ItemsSource="{Binding Path=Spomenici}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" Margin="0,0,0,201">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Oznaka" Width="Auto" Binding="{Binding Oznaka}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime" Width="Auto" Binding="{Binding Ime}"></DataGridTextColumn>
@@ -34,5 +35,12 @@
                 <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding Datum}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Label x:Name="label" Content="Filtriraj po oznaci: " HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxOznaka" HorizontalAlignment="Left" Height="23" Margin="121,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="{Binding Oznaka}"/>
+        <Button x:Name="btnFilter" Content="Filtriraj" HorizontalAlignment="Left" Margin="507,439,0,0" VerticalAlignment="Top" Width="75" Click="btnFilter_Click"/>
+        <Label x:Name="label1" Content="Filtriraj po imenu:" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxIme" HorizontalAlignment="Left" Height="23" Margin="121,307,0,0" TextWrapping="Wrap" Text="{Binding Ime}" VerticalAlignment="Top" Width="131"/>
+        <Label x:Name="label2" Content="Filtriraj po tipu: " HorizontalAlignment="Left" Margin="10,335,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxTip" HorizontalAlignment="Left" Height="23" Margin="121,338,0,0" TextWrapping="Wrap" Text="{Binding Tip}" VerticalAlignment="Top" Width="131"/>
     </Grid>
 </Window>
