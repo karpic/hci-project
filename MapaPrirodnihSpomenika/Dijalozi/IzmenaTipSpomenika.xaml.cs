@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MapaPrirodnihSpomenika.Model;
+using MapaPrirodnihSpomenika.helpSubsystem.helpSubsystemTip;
 
 namespace MapaPrirodnihSpomenika.Dijalozi
 {
@@ -168,6 +169,22 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             {
                 throw new ApplicationException("Failed loading image");
             }
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            IInputElement focusedControl = FocusManager.GetFocusedElement(this);
+            if (focusedControl is DependencyObject)
+            {
+                string str = HelpProviderTip.GetHelpKey((DependencyObject)focusedControl);
+                HelpProviderTip.ShowHelp(str, this);
+            }
+        }
+
+        public void doThings(string param)
+        {
+            Title = param;
         }
     }
 }

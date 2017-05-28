@@ -4,11 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.Dijalozi"
+        xmlns:l ="clr-namespace:MapaPrirodnihSpomenika.helpSubsystem.helpSubsystemTip"
         mc:Ignorable="d"
         Title="Informacije o tipu spomenika" Height="350" Width="370">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Label x:Name="labelOznaka" Content="Oznaka tipa: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxOznaka" HorizontalAlignment="Left" Height="23" Margin="94,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" ToolTip="Unesite jedinstvenu oznaku tipa spomenika.">
+        <TextBox x:Name="txtBoxOznaka" HorizontalAlignment="Left" Height="23" Margin="94,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" ToolTip="Unesite jedinstvenu oznaku tipa spomenika." l:HelpProviderTip.HelpKey="oznakaTip">
             <TextBox.Text>
                 <Binding Path="Ime_tipa" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -37,7 +41,7 @@
             </Validation.ErrorTemplate>
         </TextBox>
         <Label x:Name="labelIme" Content="Ime tipa: " HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.508,0.519"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="94,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" ToolTip="Unesite ime tipa spomenika">
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="94,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" ToolTip="Unesite ime tipa spomenika" l:HelpProviderTip.HelpKey="imeTip">
             <TextBox.Text>
                 <Binding Path="Oznaka_tipa" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -66,9 +70,9 @@
             </Validation.ErrorTemplate>
         </TextBox>
         <Label x:Name="labelIkonica" Content="Ikonica tipa: " HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonIzborIkonice" Content="Izaberite ikonicu..." HorizontalAlignment="Left" Margin="94,116,0,0" VerticalAlignment="Top" Width="120" Click="izaberiteIkonicuClicked"/>
+        <Button x:Name="buttonIzborIkonice" Content="Izaberite ikonicu..." HorizontalAlignment="Left" Margin="94,116,0,0" VerticalAlignment="Top" Width="120" Click="izaberiteIkonicuClicked" l:HelpProviderTip.HelpKey="ikonicaTip"/>
         <Label x:Name="labelOpis" Content="Opis tipa: " HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="114" Margin="94,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" ToolTip="Unesite opis tipa spomenika.">
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="114" Margin="94,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" ToolTip="Unesite opis tipa spomenika." l:HelpProviderTip.HelpKey="opisTip">
             <TextBox.Text>
                 <Binding Path="Opis_tipa" UpdateSourceTrigger="PropertyChanged">
 

@@ -4,16 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika.Dijalozi"
+        xmlns:l ="clr-namespace:MapaPrirodnihSpomenika.helpSubsystem"
         mc:Ignorable="d"
         Title="Informacije o spomeniku" Height="650" Width="400" ResizeMode="NoResize">
-    <Grid RenderTransformOrigin="0.51,0.411">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    <Grid RenderTransformOrigin="0.51,0.411" >
 
         <Label x:Name="labelImeSpomenika" Content="Ime spomenika:" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.473,1.885"/>
         <Label x:Name="labelOznakaSpomenika" Content="Oznaka spomenika:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelOpisSpomenika" Content="Opis spomenika:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelTipSpomenika" Content="Tip spomenika:" HorizontalAlignment="Left" Margin="13,210,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelKlima" Content="Klima: " HorizontalAlignment="Left" Margin="14,322,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxOznakaSpomenika" HorizontalAlignment="Left" Height="23" Margin="124,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" ToolTip="Unesite jedinstvenu oznaku spomenika.">
+        <TextBox x:Name="txtBoxOznakaSpomenika" HorizontalAlignment="Left" Height="23" Focusable="True" Margin="124,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" ToolTip="Unesite jedinstvenu oznaku spomenika." l:HelpProvider.HelpKey="oznakaSpomenik">
             <TextBox.Text>
                 <Binding Path="Oznaka" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -42,7 +46,7 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBox x:Name="txtBoxImeSpomenika" HorizontalAlignment="Left" Height="23" Margin="124,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" ToolTip="Unesite ime spomenika">
+        <TextBox x:Name="txtBoxImeSpomenika" HorizontalAlignment="Left" Height="23" Margin="124,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" ToolTip="Unesite ime spomenika" l:HelpProvider.HelpKey="imeSpomenik">
             <TextBox.Text>
                 <Binding Path="Ime" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -72,16 +76,16 @@
             </Validation.ErrorTemplate>
         </TextBox>
 
-        <TextBox x:Name="txtBoxOpis" HorizontalAlignment="Left" Height="92" Margin="124,116,0,0" TextWrapping="Wrap" Text="{Binding Opis}" VerticalAlignment="Top" Width="251" ToolTip="Unesite opis spomenika."/>
-        <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="125,326,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Klima}"></ComboBox>
+        <TextBox x:Name="txtBoxOpis" HorizontalAlignment="Left" Height="92" Margin="124,116,0,0" TextWrapping="Wrap" Text="{Binding Opis}" VerticalAlignment="Top" Width="251" ToolTip="Unesite opis spomenika." l:HelpProvider.HelpKey="opisSpomenik"/>
+        <ComboBox x:Name="comboBoxKlima" HorizontalAlignment="Left" Margin="125,326,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Klima}" l:HelpProvider.HelpKey="klimaSpomenik"></ComboBox>
         <Label x:Name="labelIkonica" Content="Ikonica: " HorizontalAlignment="Left" Margin="14,356,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonIconPicker" Content="Izaberi ikonicu..." HorizontalAlignment="Left" Margin="125,359,0,0" VerticalAlignment="Top" Width="101" Click="izaberiIkonicuClicked"/>
+        <Button x:Name="buttonIconPicker" Content="Izaberi ikonicu..." HorizontalAlignment="Left" Margin="125,359,0,0" VerticalAlignment="Top" Width="101" Click="izaberiIkonicuClicked" l:HelpProvider.HelpKey="ikonicaSpomenik"/>
         <Label x:Name="labelEco" Content="Ekoloski ugrozen: " HorizontalAlignment="Left" Margin="14,392,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelNaseljeno" Content="Naseljeni region: " HorizontalAlignment="Left" Margin="14,423,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelTurStatus" Content="Turistički status: " HorizontalAlignment="Left" Margin="14,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.009,-0.231"/>
-        <ComboBox x:Name="comboBoxTurStatus" HorizontalAlignment="Left" Margin="125,454,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Status}"/>
+        <ComboBox x:Name="comboBoxTurStatus" HorizontalAlignment="Left" Margin="125,454,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Status}" l:HelpProvider.HelpKey="turStatusSpomenik"/>
         <Label x:Name="labelGodPrihod" Content="Godišnji prihod: " HorizontalAlignment="Left" Margin="14,485,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxGodPrihod" HorizontalAlignment="Left" Height="23" Margin="125,485,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" ToolTip="Unesite godisnji prihod od turizma." SpellCheck.IsEnabled="True">
+        <TextBox x:Name="txtBoxGodPrihod" HorizontalAlignment="Left" Height="23" Margin="125,485,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" ToolTip="Unesite godisnji prihod od turizma." SpellCheck.IsEnabled="True" l:HelpProvider.HelpKey="godPrihodSpomenik">
             <TextBox.Text>
                 <Binding Path="Prihod" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -108,17 +112,17 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <DatePicker x:Name="datePicker1" HorizontalAlignment="Left" Margin="124,541,0,0" VerticalAlignment="Top" Width="252" SelectedDate="{Binding Datum}"/>
+        <DatePicker x:Name="datePicker1" HorizontalAlignment="Left" Margin="124,541,0,0" VerticalAlignment="Top" Width="252" SelectedDate="{Binding Datum}" l:HelpProvider.HelpKey="datumSpomenik"/>
 
         <Label x:Name="labelDatOtrivanja" Content="Datum otkrivanja: " HorizontalAlignment="Left" Margin="14,540,0,0" VerticalAlignment="Top"/>
         <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="13,577,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="okClicked"/>
         <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="306,577,0,0" VerticalAlignment="Top" Width="78" Height="34" Click="cancelClicked"/>
-        <ComboBox x:Name="comboBoxEkoUgorzen" HorizontalAlignment="Left" Margin="125,396,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Eko_ugrozen}"/>
-        <ComboBox x:Name="comboBoxNaselje" HorizontalAlignment="Left" Margin="125,427,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Naseljen}"/>
-        <ComboBox x:Name="comboBoxTip" HorizontalAlignment="Left" Margin="123,214,0,0" VerticalAlignment="Top" Width="252" ItemsSource="{Binding Tipovi}" DisplayMemberPath="Oznaka" Text="{Binding Tip}"/>
+        <ComboBox x:Name="comboBoxEkoUgorzen" HorizontalAlignment="Left" Margin="125,396,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Eko_ugrozen}" l:HelpProvider.HelpKey="ekoSpomenik"/>
+        <ComboBox x:Name="comboBoxNaselje" HorizontalAlignment="Left" Margin="125,427,0,0" VerticalAlignment="Top" Width="251" Text="{Binding Naseljen}" l:HelpProvider.HelpKey="naseljenSpomenik"/>
+        <ComboBox x:Name="comboBoxTip" HorizontalAlignment="Left" Margin="123,214,0,0" VerticalAlignment="Top" Width="252" ItemsSource="{Binding Tipovi}" DisplayMemberPath="Oznaka" Text="{Binding Tip}" l:HelpProvider.HelpKey="tipSpomenik"/>
         <Image x:Name="ikonicaImgBox" HorizontalAlignment="Left" Height="35" Margin="324,353,0,0" VerticalAlignment="Top" Width="51" RenderTransformOrigin="0.49,0.486" Source="{Binding Putanja}"/>
         <Label x:Name="labelEtiketa" Content="Etikete: " HorizontalAlignment="Left" Margin="14,241,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="listBoxEtikete" HorizontalAlignment="Left" Height="80" Margin="123,241,0,0" VerticalAlignment="Top" Width="252" ItemsSource="{Binding Tagovi}" SelectionMode="Multiple">
+        <ListBox x:Name="listBoxEtikete" HorizontalAlignment="Left" Height="80" Margin="123,241,0,0" VerticalAlignment="Top" Width="252" ItemsSource="{Binding Tagovi}" SelectionMode="Multiple" l:HelpProvider.HelpKey="etiketaSpomenik">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Oznaka}"/>

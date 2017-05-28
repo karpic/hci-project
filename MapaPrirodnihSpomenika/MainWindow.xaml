@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika"
         xmlns:modelNs ="clr-namespace:MapaPrirodnihSpomenika.Model"
         mc:Ignorable="d"
-        Title="Mapa prirodnih spomenika" Height="430" Width="750" ResizeMode="NoResize">
+        Title="Mapa prirodnih spomenika" Height="430" Width="750" ResizeMode="NoResize" Closed="onCloseAction">
     <Grid>
         <DockPanel >
             <Menu DockPanel.Dock="Top">
@@ -28,10 +28,10 @@
             </Menu>
 
 
-            <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60" DockPanel.Dock="Right" Width="538"/>
+            <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60" DockPanel.Dock="Right" Width="538" AllowDrop="True"/>
             <TabControl x:Name="tabControl" Height="321" VerticalAlignment="Top" Width="208" DockPanel.Dock="Left">
                 <TabItem Header="Spomenici">
-                    <TreeView Name="treeViewSpomenici" ItemsSource="{Binding Spomenici}">
+                    <TreeView Name="treeViewSpomenici" ItemsSource="{Binding Spomenici}"  PreviewMouseLeftButtonDown="spomeniciTreeView_previewLeftMouseDown">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type modelNs:Spomenik}" ItemsSource="{Binding Spomenici}">
                                 <StackPanel Orientation="Horizontal">

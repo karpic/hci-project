@@ -20,13 +20,15 @@ using System.ComponentModel;
 using Microsoft.Win32;
 using System.Xml.Serialization;
 using System.IO;
+using System.Windows.Forms;
+using MapaPrirodnihSpomenika.helpSubsystem;
 
 namespace MapaPrirodnihSpomenika
 {
     [Serializable]
     public partial class MainWindow : Window
     {
-
+        Point startPoint = new Point();
         public static ObservableCollection<Spomenik> Spomenici
         {
             set;
@@ -52,6 +54,7 @@ namespace MapaPrirodnihSpomenika
             Tipovi = new ObservableCollection<Tip>();
             Tagovi = new ObservableCollection<Tag>();
             container = new ListContainer();
+            deserijalizuj();
         }
       
         public void dodajSpomenik(Spomenik s)
@@ -99,6 +102,7 @@ namespace MapaPrirodnihSpomenika
 
         private void izadjiMenuClicked(object sender, RoutedEventArgs e)
         {
+            seriajalizuj();
             this.Close();
         }
 
@@ -161,8 +165,7 @@ namespace MapaPrirodnihSpomenika
             tvt.DataContext = this;
             tvt.Show();
         }
-        //sacuvaj dugme iz menija
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        public void seriajalizuj()
         {
             container.Tipovi = Tipovi;
             container.Tagovi = Tagovi;
@@ -175,10 +178,8 @@ namespace MapaPrirodnihSpomenika
             mySerializer.Serialize(myWriter, container);
             myWriter.Close();
         }
-        //otvori dugme iz menija
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        public void deserijalizuj()
         {
-            //ListContainer container = null;
             string path = "listContainerSerialized.xml";
 
             XmlSerializer serializer = new XmlSerializer(typeof(ListContainer));
@@ -195,5 +196,85 @@ namespace MapaPrirodnihSpomenika
             treeViewTagovi.ItemsSource = Tagovi;
             treeTipovi.ItemsSource = Tipovi;
         }
+        //sacuvaj dugme iz menija
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            seriajalizuj();
+        }
+        //otvori dugme iz menija
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            //ListContainer container = null;
+            deserijalizuj();
+        }
+
+        private void onCloseAction(object sender, EventArgs e)
+        {
+            seriajalizuj();
+        }
+
+        private void spomeniciTreeView_mouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            //Point mousePos = e.GetPosition(null);
+            //Vector diff = startPoint - mousePos;
+
+            //if (e.LeftButton == MouseButtonState.Pressed &&
+            //    (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+            //    Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            //{
+            //    // Get the dragged ListViewItem
+            //    TreeView treeView = sender as System.Windows.Controls.TreeView;
+            //    TreeViewItem treeViewItem =
+            //        FindAncestor<TreeViewItem>((DependencyObject)e.OriginalSource);
+
+            //    // Find the data behind the ListViewItem
+            //    Spomenik spomenik = (Spomenik)treeView.ItemContainerGenerator.
+            //        ItemFromContainer(treeViewItem);
+
+            //    // Initialize the drag & drop operation
+            //    DataObject dragData = new DataObject("myFormat", spomenik);
+            //    DragDrop.DoDragDrop(treeViewItem, dragData, System.Windows.DragDropEffects.Move);
+            //    Console.WriteLine(spomenik.Ime);
+            //}
+        }
+        private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
+        {
+            do
+            {
+                if (current is T)
+                {
+                    return (T)current;
+                }
+                current = VisualTreeHelper.GetParent(current);
+            }
+            while (current != null);
+            return null;
+        }
+
+        private void spomeniciTreeView_previewLeftMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(null);
+        }
+
+        //private void map_dragEnter(object sender, DragEventArgs e)
+        //{
+        //    if (!e.Data.GetDataPresent("myFormat") || sender == e.Source)
+        //    {
+        //        e.Effects = DragDropEffects.None;
+        //    }
+        //}
+
+        //private void map_drop(object sender, DragEventArgs e)
+        //{
+        //    if (e.Data.GetDataPresent("myFormat"))
+        //    {
+        //        Spomenik spomenik = e.Data.GetData("myFormat") as Spomenik;
+        //        BitmapImage spomenikIcon = new BitmapImage(new Uri(spomenik.Ikonica, UriKind.Relative));
+
+
+        //    }
+        //}
+
+        
     }
 }

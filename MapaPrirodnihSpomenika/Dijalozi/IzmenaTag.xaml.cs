@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MapaPrirodnihSpomenika.Model;
+using MapaPrirodnihSpomenika.helpSubsystem.helpSubsystemEtiketa;
+
 namespace MapaPrirodnihSpomenika.Dijalozi
 {
     /// <summary>
@@ -134,6 +136,22 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         private void forceValidation()
         {
             txtBoxOznaka.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            IInputElement focusedControl = FocusManager.GetFocusedElement(this);
+            if (focusedControl is DependencyObject)
+            {
+                string str = HelpProviderEtiketa.GetHelpKey((DependencyObject)focusedControl);
+                HelpProviderEtiketa.ShowHelp(str, this);
+            }
+        }
+
+        public void doThings(string param)
+        {
+            Title = param;
         }
     }
 }
