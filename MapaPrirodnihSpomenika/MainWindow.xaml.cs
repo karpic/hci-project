@@ -22,6 +22,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Windows.Forms;
 using MapaPrirodnihSpomenika.helpSubsystem;
+using System.Windows.Markup;
 
 namespace MapaPrirodnihSpomenika
 {
@@ -45,6 +46,7 @@ namespace MapaPrirodnihSpomenika
             get;
         }
         private ListContainer container;
+        private CanvasIconContainer canvasIconContainer;
         private String _putanja;
         public MainWindow()
         { 
@@ -57,7 +59,9 @@ namespace MapaPrirodnihSpomenika
             Tipovi = new ObservableCollection<Tip>();
             Tagovi = new ObservableCollection<Tag>();
             container = new ListContainer();
+            canvasIconContainer = new CanvasIconContainer();
             deserijalizuj();
+            deserializeMyCanvas();
         }
       
         public void dodajSpomenik(Spomenik s)
@@ -106,6 +110,7 @@ namespace MapaPrirodnihSpomenika
         private void izadjiMenuClicked(object sender, RoutedEventArgs e)
         {
             seriajalizuj();
+            serializeMyCanvas();
             this.Close();
         }
 
@@ -203,17 +208,20 @@ namespace MapaPrirodnihSpomenika
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             seriajalizuj();
+            serializeMyCanvas();
         }
         //otvori dugme iz menija
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             //ListContainer container = null;
             deserijalizuj();
+            deserializeMyCanvas();
         }
 
         private void onCloseAction(object sender, EventArgs e)
         {
             seriajalizuj();
+            serializeMyCanvas();
         }
 
         private void spomeniciTreeView_mouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -268,18 +276,28 @@ namespace MapaPrirodnihSpomenika
                 Spomenik spomenik = e.Data.GetData("myFormat") as Spomenik;
                 //BitmapImage spomenikIcon = new BitmapImage(new Uri(spomenik.Ikonica, UriKind.Relative));
                 //myCanvas.Children.Add(spomenikIcon);
-                Image spomenikIcon = new Image();
-                BitmapImage source = new BitmapImage(new Uri(spomenik.Ikonica, UriKind.Absolute));
-                spomenikIcon.Source = source;
-                spomenikIcon.Width = 30;
-                spomenikIcon.Height = 30;
-                Point currentMousePosition = e.GetPosition(this.myCanvas);
+                if(spomenik.NaMapi == false)
+                {
+                    Image spomenikIcon = new Image();
+                    BitmapImage source = new BitmapImage(new Uri(spomenik.Ikonica, UriKind.Absolute));
+                    spomenikIcon.Source = source;
+                    spomenikIcon.Width = 30;
+                    spomenikIcon.Height = 30;
+                    Point currentMousePosition = e.GetPosition(this.myCanvas);
+                    spomenik.NaMapi = true;
 
+                    CanvasIcon canvasIcon = new CanvasIcon(spomenik.Ikonica, currentMousePosition.X, currentMousePosition.Y);
+                    canvasIconContainer.Ikonice.Add(canvasIcon);
+
+                    myCanvas.Children.Add(spomenikIcon);
+                    Canvas.SetLeft(spomenikIcon, currentMousePosition.X);
+                    Canvas.SetTop(spomenikIcon, currentMousePosition.Y);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Ovaj spomenik je vec dodan na mapu!");
+                }
                 
-
-                myCanvas.Children.Add(spomenikIcon);
-                Canvas.SetLeft(spomenikIcon, currentMousePosition.X);
-                Canvas.SetTop(spomenikIcon, currentMousePosition.Y);
             }
         }
 
@@ -291,6 +309,56 @@ namespace MapaPrirodnihSpomenika
             }
         }
 
-        
+        private void serializeMyCanvas()
+        {
+            XmlSerializer mySerializer = new
+            XmlSerializer(typeof(CanvasIconContainer));
+            // To write to a file, create a StreamWriter object.  
+            StreamWriter myWriter = new StreamWriter("myCanvas.xml");
+            mySerializer.Serialize(myWriter, canvasIconContainer);
+            myWriter.Close();
+
+
+            //FileStream fs = File.Open("myCanvas.txt", FileMode.Create);
+            //XamlWriter.Save(myCanvas, fs);
+            //fs.Close();
+        }
+        private void deserializeMyCanvas()
+        {
+            string path = "myCanvas.xml";
+
+            XmlSerializer serializer = new XmlSerializer(typeof(CanvasIconContainer));
+
+            StreamReader reader = new StreamReader(path);
+            CanvasIconContainer canContainer = (CanvasIconContainer)serializer.Deserialize(reader);
+
+            reader.Close();
+
+            myCanvas.Children.Clear();
+            canvasIconContainer.Ikonice.Clear();
+            foreach(CanvasIcon ci in canContainer.Ikonice)
+            {
+                Image spomenikIcon = new Image();
+                BitmapImage source = new BitmapImage(new Uri(ci.Img, UriKind.Absolute));
+                spomenikIcon.Source = source;
+                spomenikIcon.Width = 30;
+                spomenikIcon.Height = 30;
+
+                myCanvas.Children.Add(spomenikIcon);
+                Canvas.SetLeft(spomenikIcon, ci.XCoord);
+                Canvas.SetTop(spomenikIcon, ci.YXCoord);
+
+                CanvasIcon canvasIcon = new CanvasIcon(ci.Img, ci.XCoord, ci.YXCoord);
+                canvasIconContainer.Ikonice.Add(canvasIcon);
+            }
+
+            //this.myCanvas = canvasContainer.Can;
+            //    FileStream fs = File.Open("myCanvas.txt", FileMode.Open);
+            //    Canvas savedCanvas = XamlReader.Load(fs) as Canvas;
+            //    RegisterName("myCanvas", savedCanvas);
+            //    fs.Close();
+            //    //this.myCanvas.Children.Add(savedCanvas);
+            //    myCanvas = savedCanvas;
+        }
     }
 }

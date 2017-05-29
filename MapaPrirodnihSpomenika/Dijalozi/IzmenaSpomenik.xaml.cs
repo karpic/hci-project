@@ -393,7 +393,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     {
                         putanja = tipSpomenika.Putanja;
                     }
-                    Spomenik sp = new Spomenik(oznaka, ime, opis, tipSpomenika,  klima, putanja, ugrozen, naseljen, status, prihod, datum, Tagovi);
+                    Spomenik sp = new Spomenik(oznaka, ime, opis, tipSpomenika,  klima, putanja, ugrozen, naseljen, status, prihod, datum, Tagovi, false);
                     MainWindow.Spomenici.Add(sp);
                     this.Close();
                 }

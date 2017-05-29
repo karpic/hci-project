@@ -74,6 +74,8 @@
       <DependentUpon>HelpViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="helpSubsystem\JavaScriptControlHelper.cs" />
+    <Compile Include="Model\CanvasIcon.cs" />
+    <Compile Include="Model\CanvasIconContainer.cs" />
     <Compile Include="Model\ListContainer.cs" />
     <Compile Include="TableView\BoolToValueConverter.cs" />
     <Compile Include="TableView\TableViewSpomenik.xaml.cs">

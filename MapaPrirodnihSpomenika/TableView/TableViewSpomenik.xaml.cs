@@ -32,38 +32,7 @@ namespace MapaPrirodnihSpomenika.TableView
 
         CollectionViewSource itemSourceList;
         ICollectionView Itemlist;
-        private string _oznaka;
-        public string Oznaka
-        {
-            get
-            {
-                return _oznaka;
-            }
-            set
-            {
-                if (value != _oznaka)
-                {
-                    _oznaka = value;
-                    OnPropertyChanged("Oznaka");
-                }
-            }
-        }
-        private string _ime;
-        public string Ime
-        {
-            get
-            {
-                return _ime;
-            }
-            set
-            {
-                if (value != _ime)
-                {
-                    _ime = value;
-                    OnPropertyChanged("Ime");
-                }
-            }
-        }
+        
         private string _tip;
         public string Tip
         {
@@ -84,8 +53,6 @@ namespace MapaPrirodnihSpomenika.TableView
         public TableViewSpomenik()
         {
             InitializeComponent();
-            this.textBoxOznaka.DataContext = this;
-            this.textBoxIme.DataContext = this;
             this.textBoxTip.DataContext = this;
             itemSourceList = new CollectionViewSource() { Source = MainWindow.Spomenici };
 
@@ -95,7 +62,7 @@ namespace MapaPrirodnihSpomenika.TableView
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
             Itemlist = itemSourceList.View;
-            var yourCostumFilter = new Predicate<object>(item => ((Spomenik)item).Oznaka.Contains(_oznaka) && ((Spomenik)item).Ime.Contains(Ime));
+            var yourCostumFilter = new Predicate<object>(item => ((Spomenik)item).Tip.Ime.Equals(Tip));
             
             Itemlist.Filter = yourCostumFilter;
             

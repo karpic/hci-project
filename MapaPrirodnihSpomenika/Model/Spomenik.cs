@@ -204,7 +204,23 @@ namespace MapaPrirodnihSpomenika.Model
                 }
             }
         }
-        public Spomenik(String oznaka, String ime, String opis, Tip tip, String klima, String ikonica, Boolean ugrozen, Boolean naseljen, String tur_status, int prihod, DateTime datum, ObservableCollection<Tag> etikete)
+        Boolean _naMapi;
+        public Boolean NaMapi
+        {
+            get
+            {
+                return _naMapi;
+            }
+            set
+            {
+                if (_naMapi != value)
+                {
+                    _naMapi = value;
+                    OnPropertyChanged("NaMapi");
+                }
+            }
+        }
+        public Spomenik(String oznaka, String ime, String opis, Tip tip, String klima, String ikonica, Boolean ugrozen, Boolean naseljen, String tur_status, int prihod, DateTime datum, ObservableCollection<Tag> etikete, Boolean naMapi)
         {
             this._oznaka = oznaka;
             this._ime = ime;
@@ -218,6 +234,7 @@ namespace MapaPrirodnihSpomenika.Model
             this._datum = datum;
             this._tip = tip;
             this.etiketeSpomenika = etikete;
+            this._naMapi = naMapi;
         }
         public Spomenik()
         {
