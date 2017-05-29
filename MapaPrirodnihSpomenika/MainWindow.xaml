@@ -28,10 +28,13 @@
             </Menu>
 
 
-            <Image x:Name="myMapImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Resources/map.jpg" Margin="0,0,0,60" DockPanel.Dock="Right" Width="538" AllowDrop="True"/>
+            
+            
+                
+            
             <TabControl x:Name="tabControl" Height="321" VerticalAlignment="Top" Width="208" DockPanel.Dock="Left">
                 <TabItem Header="Spomenici">
-                    <TreeView Name="treeViewSpomenici" ItemsSource="{Binding Spomenici}"  PreviewMouseLeftButtonDown="spomeniciTreeView_previewLeftMouseDown">
+                    <TreeView Name="treeViewSpomenici" ItemsSource="{Binding Spomenici}"  PreviewMouseLeftButtonDown="spomeniciTreeView_previewLeftMouseDown" MouseMove="spomeniciTreeView_mouseMove">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type modelNs:Spomenik}" ItemsSource="{Binding Spomenici}">
                                 <StackPanel Orientation="Horizontal">
@@ -78,7 +81,9 @@
                     </TreeView>
                 </TabItem>
             </TabControl>
-            
+            <Canvas x:Name="myCanvas" Height="383" VerticalAlignment="Top" Width="537" AllowDrop="True" Drop="myCanvas_Drop" DragEnter="myCanvas_DragEnter" DockPanel.Dock="Right"/>
+
+
 
         </DockPanel>
 

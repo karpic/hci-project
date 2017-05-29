@@ -50,6 +50,9 @@ namespace MapaPrirodnihSpomenika
         { 
             InitializeComponent();
             this.DataContext = this;
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new BitmapImage(new Uri(@"C:\Users\Arsenije\Documents\Faks\hci\project\MapaPrirodnihSpomenika\MapaPrirodnihSpomenika\bin\Debug\map.jpg", UriKind.Relative));
+            myCanvas.Background = imageBrush;
             Spomenici = new ObservableCollection<Spomenik>();
             Tipovi = new ObservableCollection<Tip>();
             Tagovi = new ObservableCollection<Tag>();
@@ -213,29 +216,29 @@ namespace MapaPrirodnihSpomenika
             seriajalizuj();
         }
 
-        private void spomeniciTreeView_mouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void spomeniciTreeView_mouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            //Point mousePos = e.GetPosition(null);
-            //Vector diff = startPoint - mousePos;
+            Point mousePos = e.GetPosition(null);
+            Vector diff = startPoint - mousePos;
 
-            //if (e.LeftButton == MouseButtonState.Pressed &&
-            //    (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-            //    Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
-            //{
-            //    // Get the dragged ListViewItem
-            //    TreeView treeView = sender as System.Windows.Controls.TreeView;
-            //    TreeViewItem treeViewItem =
-            //        FindAncestor<TreeViewItem>((DependencyObject)e.OriginalSource);
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                // Get the dragged ListViewItem
+                System.Windows.Controls.TreeView treeView = sender as System.Windows.Controls.TreeView;
+                TreeViewItem treeViewItem =
+                    FindAncestor<TreeViewItem>((DependencyObject)e.OriginalSource);
 
-            //    // Find the data behind the ListViewItem
-            //    Spomenik spomenik = (Spomenik)treeView.ItemContainerGenerator.
-            //        ItemFromContainer(treeViewItem);
+                // Find the data behind the ListViewItem
+                Spomenik spomenik = (Spomenik)treeView.ItemContainerGenerator.
+                    ItemFromContainer(treeViewItem);
 
-            //    // Initialize the drag & drop operation
-            //    DataObject dragData = new DataObject("myFormat", spomenik);
-            //    DragDrop.DoDragDrop(treeViewItem, dragData, System.Windows.DragDropEffects.Move);
-            //    Console.WriteLine(spomenik.Ime);
-            //}
+                // Initialize the drag & drop operation
+                System.Windows.DataObject dragData = new System.Windows.DataObject("myFormat", spomenik);
+                DragDrop.DoDragDrop(treeViewItem, dragData, System.Windows.DragDropEffects.Move);
+                Console.WriteLine(spomenik.Ime);
+            }
         }
         private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
         {
@@ -256,24 +259,37 @@ namespace MapaPrirodnihSpomenika
             startPoint = e.GetPosition(null);
         }
 
-        //private void map_dragEnter(object sender, DragEventArgs e)
-        //{
-        //    if (!e.Data.GetDataPresent("myFormat") || sender == e.Source)
-        //    {
-        //        e.Effects = DragDropEffects.None;
-        //    }
-        //}
+        
 
-        //private void map_drop(object sender, DragEventArgs e)
-        //{
-        //    if (e.Data.GetDataPresent("myFormat"))
-        //    {
-        //        Spomenik spomenik = e.Data.GetData("myFormat") as Spomenik;
-        //        BitmapImage spomenikIcon = new BitmapImage(new Uri(spomenik.Ikonica, UriKind.Relative));
+        private void myCanvas_Drop(object sender, System.Windows.DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("myFormat"))
+            {
+                Spomenik spomenik = e.Data.GetData("myFormat") as Spomenik;
+                //BitmapImage spomenikIcon = new BitmapImage(new Uri(spomenik.Ikonica, UriKind.Relative));
+                //myCanvas.Children.Add(spomenikIcon);
+                Image spomenikIcon = new Image();
+                BitmapImage source = new BitmapImage(new Uri(spomenik.Ikonica, UriKind.Absolute));
+                spomenikIcon.Source = source;
+                spomenikIcon.Width = 30;
+                spomenikIcon.Height = 30;
+                Point currentMousePosition = e.GetPosition(this.myCanvas);
 
+                
 
-        //    }
-        //}
+                myCanvas.Children.Add(spomenikIcon);
+                Canvas.SetLeft(spomenikIcon, currentMousePosition.X);
+                Canvas.SetTop(spomenikIcon, currentMousePosition.Y);
+            }
+        }
+
+        private void myCanvas_DragEnter(object sender, System.Windows.DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent("myFormat") || sender == e.Source)
+            {
+                e.Effects = System.Windows.DragDropEffects.None;
+            }
+        }
 
         
     }
