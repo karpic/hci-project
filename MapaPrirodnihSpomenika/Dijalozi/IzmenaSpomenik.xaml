@@ -17,7 +17,7 @@
         <Label x:Name="labelOpisSpomenika" Content="Opis spomenika:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelTipSpomenika" Content="Tip spomenika:" HorizontalAlignment="Left" Margin="13,210,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelKlima" Content="Klima: " HorizontalAlignment="Left" Margin="14,322,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxOznakaSpomenika" HorizontalAlignment="Left" Height="23" Focusable="True" Margin="124,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" ToolTip="Unesite jedinstvenu oznaku spomenika." l:HelpProvider.HelpKey="oznakaSpomenik">
+        <TextBox x:Name="txtBoxOznakaSpomenika" HorizontalAlignment="Left" Height="23" Focusable="True" Margin="124,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"  l:HelpProvider.HelpKey="oznakaSpomenik">
             <TextBox.Text>
                 <Binding Path="Oznaka" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>

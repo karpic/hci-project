@@ -21,7 +21,7 @@ namespace MapaPrirodnihSpomenika.helpSubsystem.helpSubsystemEtiketa
         }
 
         public static readonly DependencyProperty HelpKeyProperty =
-            DependencyProperty.RegisterAttached("HelpKey", typeof(string), typeof(HelpProvider), new PropertyMetadata("index", HelpKey));
+            DependencyProperty.RegisterAttached("HelpKeyEtiketa", typeof(string), typeof(HelpProvider), new PropertyMetadata("index", HelpKey));
         private static void HelpKey(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             //NOOP

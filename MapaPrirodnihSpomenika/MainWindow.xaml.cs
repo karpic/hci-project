@@ -143,8 +143,34 @@ namespace MapaPrirodnihSpomenika
 
         private void obrisiTipClicked(object sender, RoutedEventArgs e)
         {
-            Tip tipToDelete = (Tip)treeTipovi.SelectedItem;
-            Tipovi.Remove(tipToDelete);
+            //DialogResult dialogResult = System.Windows.MessageBox.Show("Sure", "Some Title", System.Windows.MessageBoxButtons.YesNo);
+            //if (dialogResult == DialogResult.Yes)
+            //{
+            //    //do something
+            //}
+            //else if (dialogResult == DialogResult.No)
+            //{
+            //    //do something else
+            //}
+            if(System.Windows.Forms.MessageBox.Show("Svi spomenici ovog tipa ce takodje biti obirsani.", "Da li ste sigurni?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                Tip tipToDelete = (Tip)treeTipovi.SelectedItem;
+
+                foreach (Spomenik s in Spomenici.ToList())
+                {
+                    if (tipToDelete.Oznaka.Equals(s.Tip.Oznaka))
+                    {
+                        Spomenici.Remove(s);
+                    }
+                }
+
+                Tipovi.Remove(tipToDelete);
+            }
+            else
+            {
+
+            }
+           
         }
 
         private void obrisiTagClicked(object sender, RoutedEventArgs e)
