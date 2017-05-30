@@ -24,6 +24,7 @@ using System.Windows.Forms;
 using MapaPrirodnihSpomenika.helpSubsystem;
 using System.Windows.Markup;
 using MapaPrirodnihSpomenika.helpSubsystem.helpSubsystemMainWindow;
+using System.Diagnostics;
 
 namespace MapaPrirodnihSpomenika
 {
@@ -118,36 +119,59 @@ namespace MapaPrirodnihSpomenika
         private void okClicked(object sender, RoutedEventArgs e)
         {
             Spomenik selectedSpomenik = (Spomenik)treeViewSpomenici.SelectedItem;
-            IzmenaSpomenik iz = new IzmenaSpomenik(selectedSpomenik);
-            iz.Show();
+            if(selectedSpomenik != null)
+            {
+                IzmenaSpomenik iz = new IzmenaSpomenik(selectedSpomenik);
+                iz.Show();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Nije izabran nijedan spomenik.");
+            }
+            
         }
 
         private void izmeniTipClicked(object sender, RoutedEventArgs e)
         {
             Tip selectedTip = (Tip)treeTipovi.SelectedItem;
-            IzmenaTipSpomenika iz = new IzmenaTipSpomenika(selectedTip);
-            iz.Show();
+            if(selectedTip != null)
+            {
+                IzmenaTipSpomenika iz = new IzmenaTipSpomenika(selectedTip);
+                iz.Show();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Nije izabran nijedan tip spomenika.");
+            }
         }
 
         private void izmeniTagClicked(object sender, RoutedEventArgs e)
         {
             Tag selectedTag = (Tag)treeViewTagovi.SelectedItem;
-            IzmenaTag iz = new IzmenaTag(selectedTag);
-            iz.Show();
+            if(selectedTag != null)
+            {
+                IzmenaTag iz = new IzmenaTag(selectedTag);
+                iz.Show();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Nije izabrana nijedna etiketa spomenika.");
+            }
+            
         }
 
         private void obrisiSpomenikClicked(object sender, RoutedEventArgs e)
         {
             Spomenik spomenikToDelete = (Spomenik)treeViewSpomenici.SelectedItem;
 
-            string spomenikToDeletePathRelative = spomenikToDelete.Ikonica;
-            string spomenikToDeletePathApsolute = System.IO.Path.GetFullPath(spomenikToDeletePathRelative);
-            string spomenikToDeleteFileName = System.IO.Path.GetFileName(spomenikToDeletePathApsolute);
+            
             //Uri spomenikUri = new Uri(spomenikToDelete.Ikonica);
             //string spomenikToDeletePath = spomenikUri.AbsolutePath;
             if (spomenikToDelete != null)
             {
-                
+                string spomenikToDeletePathRelative = spomenikToDelete.Ikonica;
+                string spomenikToDeletePathApsolute = System.IO.Path.GetFullPath(spomenikToDeletePathRelative);
+                string spomenikToDeleteFileName = System.IO.Path.GetFileName(spomenikToDeletePathApsolute);
                 Spomenici.Remove(spomenikToDelete);
                 Image imgToDeleteFromCanvas = null;
                 foreach (Image img in myCanvas.Children)
@@ -315,7 +339,7 @@ namespace MapaPrirodnihSpomenika
                 // Initialize the drag & drop operation
                 System.Windows.DataObject dragData = new System.Windows.DataObject("myFormat", spomenik);
                 DragDrop.DoDragDrop(treeViewItem, dragData, System.Windows.DragDropEffects.Move);
-                Console.WriteLine(spomenik.Ime);
+                
             }
         }
         private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
@@ -451,6 +475,12 @@ namespace MapaPrirodnihSpomenika
         {
             myCanvas.Children.Clear();
             canvasIconContainer.Ikonice.Clear();
+        }
+        //tutorijal window 
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            string filePath = @"C:\Users\Arsenije\Documents\Faks\hci\project\MapaPrirodnihSpomenika\MapaPrirodnihSpomenika\tutorial\tutorial.html";
+            Process.Start(filePath);
         }
     }
 }

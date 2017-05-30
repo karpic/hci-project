@@ -241,14 +241,23 @@ namespace MapaPrirodnihSpomenika.Dijalozi
             int idx = comboBoxTip.Items.IndexOf(s.Tip);
             comboBoxTip.SelectedIndex = idx;
             //hendlovanje selektovanih etiketa
-            foreach(Tag item in listBoxEtikete.Items)
+            //foreach(Tag item in listBoxEtikete.Items)
+            //{
+            //    if (Tagovi.Contains(item))
+            //    {
+            //        int index = listBoxEtikete.Items.IndexOf(item);
+            //        listBoxEtikete.SelectedIndex = index;
+            //    }
+            //}
+
+            foreach(Tag item in s.EtiketeSpomenika)
             {
                 if (Tagovi.Contains(item))
-                {
-                    int index = listBoxEtikete.Items.IndexOf(item);
-                    listBoxEtikete.SelectedIndex = index;
+                { 
+                    listBoxEtikete.SelectedItems.Add(item);
                 }
             }
+
             this.comboBoxKlima.Items.Add("Polarna");
             this.comboBoxKlima.Items.Add("Kontinentalna");
             this.comboBoxKlima.Items.Add("Umereno-kontinentalna");
@@ -351,7 +360,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     constructor2spomenik.Datum = Datum;
                     constructor2spomenik.Ikonica = Putanja;
                     constructor2spomenik.Tip = getTip(Tip);
-                    constructor2spomenik.etiketeSpomenika = Tagovi;
+                    constructor2spomenik.EtiketeSpomenika = Tagovi;
                     var currentSpomenik = constructor2spomenik;
                     int index = MainWindow.Spomenici.IndexOf(currentSpomenik);
                     MainWindow.Spomenici.Remove(currentSpomenik);
@@ -364,7 +373,8 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     String ime = Ime;
                     String opis = Opis;
 
-                    Tagovi = getTagsFromListBox();
+                    //Tagovi = getTagsFromListBox();
+                    ObservableCollection<Tag> _tagovi = getTagsFromListBox();
                     String klima = Klima;
                     int prihod = Prihod;
                     Boolean ugrozen;
@@ -393,7 +403,7 @@ namespace MapaPrirodnihSpomenika.Dijalozi
                     {
                         putanja = tipSpomenika.Putanja;
                     }
-                    Spomenik sp = new Spomenik(oznaka, ime, opis, tipSpomenika,  klima, putanja, ugrozen, naseljen, status, prihod, datum, Tagovi, false);
+                    Spomenik sp = new Spomenik(oznaka, ime, opis, tipSpomenika,  klima, putanja, ugrozen, naseljen, status, prihod, datum, _tagovi, false);
                     MainWindow.Spomenici.Add(sp);
                     this.Close();
                 }
@@ -414,10 +424,10 @@ namespace MapaPrirodnihSpomenika.Dijalozi
         }
         public ObservableCollection<Tag> getTagsFromListBox()
         {
-            ObservableCollection<Tag> retVal = null;
+            ObservableCollection<Tag> retVal = new ObservableCollection<Model.Tag>();
             foreach(Tag t in listBoxEtikete.SelectedItems)
             {
-                Tagovi.Add(t);
+                retVal.Add(t);
             }
             return retVal;
         }

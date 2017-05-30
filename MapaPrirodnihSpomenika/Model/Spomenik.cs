@@ -20,7 +20,7 @@ namespace MapaPrirodnihSpomenika.Model
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
-        public ObservableCollection<Tag> etiketeSpomenika
+        public ObservableCollection<Tag> EtiketeSpomenika
         {
             set;
             get;
@@ -233,7 +233,7 @@ namespace MapaPrirodnihSpomenika.Model
             this._prihod = prihod;
             this._datum = datum;
             this._tip = tip;
-            this.etiketeSpomenika = etikete;
+            this.EtiketeSpomenika = etikete;
             this._naMapi = naMapi;
         }
         public Spomenik()

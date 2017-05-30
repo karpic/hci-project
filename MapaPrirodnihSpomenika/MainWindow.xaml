@@ -26,8 +26,7 @@
                     <MenuItem Header="Izadji" Click="izadjiMenuClicked" />
                 </MenuItem>
                 <MenuItem Header="Help">
-                    <MenuItem Header="Pomoc"/>
-                    <MenuItem Header="O autoru"/>
+                    <MenuItem Header="Tutorijal" Click="MenuItem_Click_3"/>
                     <MenuItem Header="Clear map" Click="MenuItem_Click_2"/>
                 </MenuItem>
             </Menu>
