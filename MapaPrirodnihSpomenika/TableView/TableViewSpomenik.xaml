@@ -37,6 +37,6 @@
         </DataGrid>
         <Button x:Name="btnFilter" Content="Filtriraj" HorizontalAlignment="Left" Margin="507,279,0,0" VerticalAlignment="Top" Width="75" Click="btnFilter_Click"/>
         <Label x:Name="label2" Content="Filtriraj po imenu tipa: " HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxTip" HorizontalAlignment="Left" Height="23" Margin="108,276,0,0" TextWrapping="Wrap" Text="{Binding Tip}" VerticalAlignment="Top" Width="131"/>
+        <TextBox x:Name="textBoxTip" HorizontalAlignment="Left" Height="23" Margin="144,276,0,0" TextWrapping="Wrap" Text="{Binding Tip}" VerticalAlignment="Top" Width="131"/>
     </Grid>
 </Window>

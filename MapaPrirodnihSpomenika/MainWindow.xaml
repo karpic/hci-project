@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapaPrirodnihSpomenika"
         xmlns:modelNs ="clr-namespace:MapaPrirodnihSpomenika.Model"
+        xmlns:l ="clr-namespace:MapaPrirodnihSpomenika.helpSubsystem.helpSubsystemMainWindow"
         mc:Ignorable="d"
         Title="Mapa prirodnih spomenika" Height="430" Width="750" ResizeMode="NoResize" Closed="onCloseAction">
-    <Grid>
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    <Grid l:HelpProviderMainWindow.HelpKey="dodajSpomenikDugme">
         <DockPanel >
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
@@ -23,7 +28,7 @@
                 <MenuItem Header="Help">
                     <MenuItem Header="Pomoc"/>
                     <MenuItem Header="O autoru"/>
-
+                    <MenuItem Header="Clear map" Click="MenuItem_Click_2"/>
                 </MenuItem>
             </Menu>
 
@@ -33,7 +38,7 @@
                 
             
             <TabControl x:Name="tabControl" Height="321" VerticalAlignment="Top" Width="208" DockPanel.Dock="Left">
-                <TabItem Header="Spomenici">
+                <TabItem Header="Spomenici" l:HelpProviderMainWindow.HelpKey="tabViewSpomenik">
                     <TreeView Name="treeViewSpomenici" ItemsSource="{Binding Spomenici}"  PreviewMouseLeftButtonDown="spomeniciTreeView_previewLeftMouseDown" MouseMove="spomeniciTreeView_mouseMove">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type modelNs:Spomenik}" ItemsSource="{Binding Spomenici}">
@@ -48,7 +53,7 @@
                         </TreeView.Resources>
                     </TreeView>
                 </TabItem>
-                <TabItem Header="Tipovi" Margin="-2,-2,-15,0">
+                <TabItem Header="Tipovi" Margin="-2,-2,-15,0" l:HelpProviderMainWindow.HelpKey="tabViewTip">
                     <TreeView Name="treeTipovi" ItemsSource="{Binding Tipovi}">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type modelNs:Tip}" ItemsSource="{Binding Tipovi}">
@@ -63,7 +68,7 @@
                         </TreeView.Resources>
                     </TreeView>
                 </TabItem>
-                <TabItem Header="Etikete" Margin="13,-2,-30,0">
+                <TabItem Header="Etikete" Margin="13,-2,-30,0" l:HelpProviderMainWindow.HelpKey="tabViewEtikete">
                     <TreeView Name="treeViewTagovi" ItemsSource="{Binding Tagovi}">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type modelNs:Tag}" ItemsSource="{Binding Tagovi}">
@@ -87,10 +92,10 @@
 
         </DockPanel>
 
-        <Button x:Name="buttonDodajSpomenik" Content="Dodaj spomenik" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajSpomClicked" DockPanel.Dock="Bottom"/>
-        <Button x:Name="buttonDodajTip" Content="Dodaj etiketu" HorizontalAlignment="Left" Margin="208,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajEtiketuClicked" DockPanel.Dock="Bottom"/>
-        <Button x:Name="button" Content="Dodaj tip" HorizontalAlignment="Left" Margin="109,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajTipClicked" DockPanel.Dock="Bottom" />
-        <Button x:Name="buttonIzmeniSpomenik" Content="Izmeni spomenik" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="okClicked">
+        <Button x:Name="buttonDodajSpomenik" Content="Dodaj spomenik" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajSpomClicked" DockPanel.Dock="Bottom" l:HelpProviderMainWindow.HelpKey="dodajSpomenikDugme"/>
+        <Button x:Name="buttonDodajTip" Content="Dodaj etiketu" HorizontalAlignment="Left" Margin="208,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajEtiketuClicked" DockPanel.Dock="Bottom" l:HelpProviderMainWindow.HelpKey="dodajEtiketuDugme"/>
+        <Button x:Name="button" Content="Dodaj tip" HorizontalAlignment="Left" Margin="109,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="dodajTipClicked" DockPanel.Dock="Bottom" l:HelpProviderMainWindow.HelpKey="dodajTipDugme"/>
+        <Button x:Name="buttonIzmeniSpomenik" Content="Izmeni spomenik" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="okClicked" l:HelpProviderMainWindow.HelpKey="izmeniSpomenik">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Visibility" Value="Visible" />
@@ -105,7 +110,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="buttonIzmeniTip" Content="Izmeni tip" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="izmeniTipClicked">
+        <Button x:Name="buttonIzmeniTip" Content="Izmeni tip" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="izmeniTipClicked" l:HelpProviderMainWindow.HelpKey="izmeniTip">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Visibility" Value="Visible" />
@@ -120,52 +125,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="buttonIzmeniTag" Content="Izmeni etiketu" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="izmeniTagClicked">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Visibility" Value="Visible" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
-                            <Setter Property="Visibility" Value="Hidden" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
-                            <Setter Property="Visibility" Value="Hidden" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="buttonObrisiSpomenik" Content="Obrisi spomenik" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiSpomenikClicked">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Visibility" Value="Visible" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
-                            <Setter Property="Visibility" Value="Hidden" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
-                            <Setter Property="Visibility" Value="Hidden" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="buttonObrisiTip" Content="Obrisi tip" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiTipClicked">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Visibility" Value="Visible" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
-                            <Setter Property="Visibility" Value="Hidden" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
-                            <Setter Property="Visibility" Value="Hidden" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="buttonObrisiTag" Content="Obrisi etiketu" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiTagClicked">
+        <Button x:Name="buttonIzmeniTag" Content="Izmeni etiketu" HorizontalAlignment="Left" Margin="307,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="izmeniTagClicked" l:HelpProviderMainWindow.HelpKey="izmeniEtiketu">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Visibility" Value="Visible" />
@@ -180,7 +140,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="buttonSviSpomenici" Content="Svi spomenici" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="sviSpomeniciClicked" >
+        <Button x:Name="buttonObrisiSpomenik" Content="Obrisi spomenik" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiSpomenikClicked" l:HelpProviderMainWindow.HelpKey="obrisiSpomenik">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Visibility" Value="Visible" />
@@ -195,7 +155,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="buttonSviTipovi" Content="Svi tipovi" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="sviTipoviClicked">
+        <Button x:Name="buttonObrisiTip" Content="Obrisi tip" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiTipClicked" l:HelpProviderMainWindow.HelpKey="obrisiTip">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Visibility" Value="Visible" />
@@ -210,7 +170,52 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="buttonSviTagovi" Content="Sve etikete" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="sviTagoviClicked">
+        <Button x:Name="buttonObrisiTag" Content="Obrisi etiketu" HorizontalAlignment="Left" Margin="406,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="obrisiTagClicked" l:HelpProviderMainWindow.HelpKey="obrisiEtiketu">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonSviSpomenici" Content="Svi spomenici" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="sviSpomeniciClicked" l:HelpProviderMainWindow.HelpKey="sviSpomenici">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonSviTipovi" Content="Svi tipovi" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="sviTipoviClicked" l:HelpProviderMainWindow.HelpKey="sviTipovi">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding  ElementName=tabControl, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="buttonSviTagovi" Content="Sve etikete" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="94" Height="45" Click="sviTagoviClicked" l:HelpProviderMainWindow.HelpKey="sveEtikete">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Visibility" Value="Visible" />

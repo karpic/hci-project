@@ -23,6 +23,7 @@ using System.IO;
 using System.Windows.Forms;
 using MapaPrirodnihSpomenika.helpSubsystem;
 using System.Windows.Markup;
+using MapaPrirodnihSpomenika.helpSubsystem.helpSubsystemMainWindow;
 
 namespace MapaPrirodnihSpomenika
 {
@@ -138,45 +139,88 @@ namespace MapaPrirodnihSpomenika
         private void obrisiSpomenikClicked(object sender, RoutedEventArgs e)
         {
             Spomenik spomenikToDelete = (Spomenik)treeViewSpomenici.SelectedItem;
-            Spomenici.Remove(spomenikToDelete);
+
+            string spomenikToDeletePathRelative = spomenikToDelete.Ikonica;
+            string spomenikToDeletePathApsolute = System.IO.Path.GetFullPath(spomenikToDeletePathRelative);
+            string spomenikToDeleteFileName = System.IO.Path.GetFileName(spomenikToDeletePathApsolute);
+            //Uri spomenikUri = new Uri(spomenikToDelete.Ikonica);
+            //string spomenikToDeletePath = spomenikUri.AbsolutePath;
+            if (spomenikToDelete != null)
+            {
+                
+                Spomenici.Remove(spomenikToDelete);
+                Image imgToDeleteFromCanvas = null;
+                foreach (Image img in myCanvas.Children)
+                {
+                    BitmapImage source = (BitmapImage)img.Source;
+                    Uri u = source.UriSource;
+                    string path = u.AbsolutePath;
+                    string pathFileName = System.IO.Path.GetFileName(path);
+                    if (pathFileName.Equals(spomenikToDeleteFileName))
+                    {
+                        //myCanvas.Children.Remove(img);
+                        imgToDeleteFromCanvas = img;
+
+                    }
+                }
+                myCanvas.Children.Remove(imgToDeleteFromCanvas);
+                foreach(CanvasIcon icon in canvasIconContainer.Ikonice.ToList())
+                {
+                    if (spomenikToDelete.Ikonica.Equals(icon.Img))
+                    {
+                        canvasIconContainer.Ikonice.Remove(icon);
+                    }
+                }
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Nije izabran nijedan spomenik iz liste spomenika.");
+            }
         }
 
         private void obrisiTipClicked(object sender, RoutedEventArgs e)
         {
-            //DialogResult dialogResult = System.Windows.MessageBox.Show("Sure", "Some Title", System.Windows.MessageBoxButtons.YesNo);
-            //if (dialogResult == DialogResult.Yes)
-            //{
-            //    //do something
-            //}
-            //else if (dialogResult == DialogResult.No)
-            //{
-            //    //do something else
-            //}
-            if(System.Windows.Forms.MessageBox.Show("Svi spomenici ovog tipa ce takodje biti obirsani.", "Da li ste sigurni?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            Tip tipToDelete = (Tip)treeTipovi.SelectedItem;
+            if(tipToDelete != null)
             {
-                Tip tipToDelete = (Tip)treeTipovi.SelectedItem;
-
-                foreach (Spomenik s in Spomenici.ToList())
+                if (System.Windows.Forms.MessageBox.Show("Svi spomenici ovog tipa ce takodje biti obirsani.", "Da li ste sigurni?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (tipToDelete.Oznaka.Equals(s.Tip.Oznaka))
-                    {
-                        Spomenici.Remove(s);
-                    }
-                }
 
-                Tipovi.Remove(tipToDelete);
+
+                    foreach (Spomenik s in Spomenici.ToList())
+                    {
+                        if (tipToDelete.Oznaka.Equals(s.Tip.Oznaka))
+                        {
+                            Spomenici.Remove(s);
+                        }
+                    }
+
+                    Tipovi.Remove(tipToDelete);
+                }
+                else
+                {
+                    //do nothing
+                }
             }
             else
             {
-
+                System.Windows.Forms.MessageBox.Show("Nije izabran nijedan tip spomenika iz liste tipova.");
             }
+            
            
         }
 
         private void obrisiTagClicked(object sender, RoutedEventArgs e)
         {
             Tag tagToDelete = (Tag)treeViewTagovi.SelectedItem;
-            Tagovi.Remove(tagToDelete);
+            if(tagToDelete != null)
+            {
+                Tagovi.Remove(tagToDelete);
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Nije izabrana nijedna etiketa spomenika iz liste etiketa.");
+            }
         }
 
         private void sviSpomeniciClicked(object sender, RoutedEventArgs e)
@@ -385,6 +429,28 @@ namespace MapaPrirodnihSpomenika
             //    fs.Close();
             //    //this.myCanvas.Children.Add(savedCanvas);
             //    myCanvas = savedCanvas;
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            IInputElement focusedControl = FocusManager.GetFocusedElement(this);
+            if (focusedControl is DependencyObject)
+            {
+                string str = HelpProviderMainWindow.GetHelpKey((DependencyObject)focusedControl);
+                HelpProviderMainWindow.ShowHelp(str, this);
+            }
+        }
+
+        public void doThings(string param)
+        {
+            Title = param;
+        }
+        //clear map clicked
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            myCanvas.Children.Clear();
+            canvasIconContainer.Ikonice.Clear();
         }
     }
 }

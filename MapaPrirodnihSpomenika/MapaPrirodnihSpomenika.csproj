@@ -65,6 +65,11 @@
       <DependentUpon>HelpViewerEtiketa.xaml</DependentUpon>
     </Compile>
     <Compile Include="helpSubsystem\helpSubsystemEtiketa\JavaScriptControlHelperEtiketa.cs" />
+    <Compile Include="helpSubsystem\helpSubsystemMainWindow\HelpProviderMainWindow.cs" />
+    <Compile Include="helpSubsystem\helpSubsystemMainWindow\HelpViewerMainWindow.xaml.cs">
+      <DependentUpon>HelpViewerMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="helpSubsystem\helpSubsystemMainWindow\JavaScriptControlHelperMainWindow.cs" />
     <Compile Include="helpSubsystem\helpSubsystemTip\HelpProviderTip.cs" />
     <Compile Include="helpSubsystem\helpSubsystemTip\HelpViewerTip.xaml.cs">
       <DependentUpon>HelpViewerTip.xaml</DependentUpon>
@@ -100,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="helpSubsystem\helpSubsystemEtiketa\HelpViewerEtiketa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="helpSubsystem\helpSubsystemMainWindow\HelpViewerMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,6 +194,21 @@
     <Content Include="helpSubsystem\helpSubsystemEtiketa\bojaEtiketa.htm" />
     <Content Include="helpSubsystem\helpSubsystemEtiketa\opisEtiketa.htm" />
     <Content Include="helpSubsystem\helpSubsystemEtiketa\oznakaEtiketa.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\dodajEtiketuDugme.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\dodajSpomenikDugme.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\dodajTipDugme.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\izmeniEtiketu.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\izmeniSpomenik.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\izmeniTip.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\obrisiEtiketu.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\obrisiSpomenik.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\obrisiTip.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\sveEtikete.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\sviSpomenici.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\sviTipovi.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\tabViewEtikete.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\tabViewSpomenik.htm" />
+    <Content Include="helpSubsystem\helpSubsystemMainWindow\tabViewTip.htm" />
     <Content Include="helpSubsystem\helpSubsystemTip\ikonicaTip.htm" />
     <Content Include="helpSubsystem\helpSubsystemTip\imeTip.htm" />
     <Content Include="helpSubsystem\helpSubsystemTip\opisTip.htm" />
